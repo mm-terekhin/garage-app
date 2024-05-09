@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "158604765542",
+    "project_id": "garage-112",
+    "storage_bucket": "garage-112.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158604765542:android:8743b1c37a465ec4fac0a7",
+        "android_client_info": {
+          "package_name": "com.example.garage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwjmWzOf96XPhSl0bmm9U3B5xzF90CO_Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

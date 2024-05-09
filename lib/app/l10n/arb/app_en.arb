@@ -1,0 +1,17 @@
+{
+  "appMainTitle": "Garage",
+  "gLogo": "G",
+  "otherLogo": "arage",
+  "loginLabel": "Login",
+  "passwordLabel": "Password",
+  "logInButtonLabel": "Log In",
+  "registrationTitle": "Registration",
+  "mailLabel": "E-mail",
+  "usernameLabel": "Username",
+  "confirmationPassword": "Password confirmation",
+  "registrationButtonLabel": "Register",
+  "haveAccountTitle": "Already have an account?",
+  "errorTextForEmpty": "Please fill in the field",
+  "errorTextForIncorrectRePassword": "Passwords don't match",
+  "errorTextForIncorrectPassword": "The password is too light"
+}
