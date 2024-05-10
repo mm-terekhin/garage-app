@@ -18,6 +18,11 @@ class LogInForm with _$LogInForm, FormzMixin {
     required final TextInput password,
   }) = _LogInForm;
 
+  LogInData toModel() => LogInData(
+        login: email.value,
+        password: password.value,
+      );
+
   @override
   List<FormzInput> get inputs => [
         email,

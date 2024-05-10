@@ -22,6 +22,12 @@ class SignUpForm with _$SignUpForm, FormzMixin {
     @Default(VerifiedPassword.pure()) VerifiedPassword rePassword,
   }) = _SignUpFormPure;
 
+  SignUpData toModel() => SignUpData(
+        login: login.value,
+        username: username.value,
+        password: password.value,
+      );
+
   @override
   List<FormzInput> get inputs => [
         login,

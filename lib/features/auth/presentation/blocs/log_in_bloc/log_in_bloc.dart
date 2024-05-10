@@ -1,8 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:garage/features/auth/auth.dart';
 import 'package:talker_flutter/talker_flutter.dart';
-
 import '../../../../../shared/domain/domain.dart';
 
 part 'log_in_event.dart';
@@ -12,13 +12,16 @@ part 'log_in_state.dart';
 class LogInBloc extends Bloc<LogInEvent, LogInState> {
   LogInBloc({
     required Talker talker,
+    required LogInCase logInCase,
   })  : _talker = talker,
+        _logInCase = logInCase,
         super(const LogInState.initial()) {
     on<ChangeFormLogInEvent>(_onChangeForm);
     on<SubmitLogInEvent>(_onSubmit);
   }
 
   final Talker _talker;
+  final LogInCase _logInCase;
 
   void _onChangeForm(
     ChangeFormLogInEvent event,
@@ -49,6 +52,10 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
         state.copyWith(
           status: LogInStatus.loading,
         ),
+      );
+
+      await _logInCase.call(
+        state.form.toModel(),
       );
 
       emit(

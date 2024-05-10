@@ -73,6 +73,25 @@ class SimpleField extends StatelessWidget {
           errorText: errorText,
           labelText: labelText,
           hintText: hintText,
+          errorStyle: theme.textTheme.bodyMedium?.copyWith(
+            color: theme.palette.textError,
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              theme.radii.x2,
+            ),
+            borderSide: BorderSide(
+              color: theme.palette.borderError,
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              theme.radii.x2,
+            ),
+            borderSide: BorderSide(
+              color: theme.palette.borderError,
+            ),
+          ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(
               theme.radii.x2,

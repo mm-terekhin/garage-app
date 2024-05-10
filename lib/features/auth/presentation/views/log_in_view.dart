@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garage/app/app.dart';
+import 'package:garage/features/auth/presentation/blocs/blocs.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../shared/shared.dart';
 import '../../auth.dart';
@@ -76,7 +77,11 @@ class LogInView extends StatelessWidget {
                     height: theme.spacings.x2,
                   ),
                   SubmissionButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<LogInBloc>().add(
+                        SubmitLogInEvent(),
+                      );
+                    },
                     title: context.l10n.logInButtonLabel,
                   ),
                   SizedBox(
