@@ -96,6 +96,9 @@ class LightThemeBuilder implements ThemeBuilder {
   }) {
     return TextButtonThemeData(
       style: ButtonStyle(
+        overlayColor: MaterialStatePropertyAll<Color>(
+          palette.borderPrimary.withOpacity(0.2),
+        ),
         shape: MaterialStateProperty.all(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(radii.x2),

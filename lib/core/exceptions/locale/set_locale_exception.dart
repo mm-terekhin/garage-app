@@ -1,0 +1,1 @@
+class SetLocaleException implements Exception {}

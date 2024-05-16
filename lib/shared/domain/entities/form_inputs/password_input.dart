@@ -1,16 +1,17 @@
 import 'package:formz/formz.dart';
-import 'package:garage/app/app.dart';
+
+import '../../../../app/i18n/strings.g.dart';
 
 enum PasswordInputValidationError {
   empty,
   light;
 
-  String toText(AppLocalizations l10n) {
+  String toText(Translations l10n) {
     switch (this) {
       case PasswordInputValidationError.empty:
-        return l10n.errorTextForEmpty;
+        return l10n.errors.errorTextForEmpty;
       case PasswordInputValidationError.light:
-        return l10n.errorTextForIncorrectPassword;
+        return l10n.errors.errorTextForIncorrectPassword;
     }
   }
 }

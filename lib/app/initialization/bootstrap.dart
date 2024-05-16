@@ -6,6 +6,8 @@ import 'package:get_it/get_it.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import '../app.dart';
+import '../i18n/strings.g.dart';
+import 'hive_initializer.dart';
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await registerTalker();
@@ -25,13 +27,18 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
       await Firebase.initializeApp();
 
+      await initializeHive();
+
       await registerInjection();
 
       await GetIt.instance.allReady();
 
       Bloc.observer = talkerBloc;
-
-      runApp(await builder());
+      runApp(
+        TranslationProvider(
+          child: await builder(),
+        ),
+      );
     },
     (error, stackTrace) => talker.handle(error.toString(), stackTrace),
   );

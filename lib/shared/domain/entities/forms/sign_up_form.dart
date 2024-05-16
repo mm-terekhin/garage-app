@@ -24,7 +24,6 @@ class SignUpForm with _$SignUpForm, FormzMixin {
 
   SignUpData toModel() => SignUpData(
         login: login.value,
-        username: username.value,
         password: password.value,
       );
 

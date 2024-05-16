@@ -8,7 +8,6 @@ class SignUpData with _$SignUpData{
 
   const factory SignUpData({
     required final String login,
-    required final String username,
     required final String password,
 }) = _SignUpData;
 }

@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SignUpData {
   String get login => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +30,7 @@ abstract class $SignUpDataCopyWith<$Res> {
           SignUpData value, $Res Function(SignUpData) then) =
       _$SignUpDataCopyWithImpl<$Res, SignUpData>;
   @useResult
-  $Res call({String login, String username, String password});
+  $Res call({String login, String password});
 }
 
 /// @nodoc
@@ -48,17 +47,12 @@ class _$SignUpDataCopyWithImpl<$Res, $Val extends SignUpData>
   @override
   $Res call({
     Object? login = null,
-    Object? username = null,
     Object? password = null,
   }) {
     return _then(_value.copyWith(
       login: null == login
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -76,7 +70,7 @@ abstract class _$$SignUpDataImplCopyWith<$Res>
       __$$SignUpDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String login, String username, String password});
+  $Res call({String login, String password});
 }
 
 /// @nodoc
@@ -91,17 +85,12 @@ class __$$SignUpDataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? login = null,
-    Object? username = null,
     Object? password = null,
   }) {
     return _then(_$SignUpDataImpl(
       login: null == login
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -114,20 +103,17 @@ class __$$SignUpDataImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SignUpDataImpl extends _SignUpData {
-  const _$SignUpDataImpl(
-      {required this.login, required this.username, required this.password})
+  const _$SignUpDataImpl({required this.login, required this.password})
       : super._();
 
   @override
   final String login;
   @override
-  final String username;
-  @override
   final String password;
 
   @override
   String toString() {
-    return 'SignUpData(login: $login, username: $username, password: $password)';
+    return 'SignUpData(login: $login, password: $password)';
   }
 
   @override
@@ -136,14 +122,12 @@ class _$SignUpDataImpl extends _SignUpData {
         (other.runtimeType == runtimeType &&
             other is _$SignUpDataImpl &&
             (identical(other.login, login) || other.login == login) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
             (identical(other.password, password) ||
                 other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, login, username, password);
+  int get hashCode => Object.hash(runtimeType, login, password);
 
   @JsonKey(ignore: true)
   @override
@@ -155,14 +139,11 @@ class _$SignUpDataImpl extends _SignUpData {
 abstract class _SignUpData extends SignUpData {
   const factory _SignUpData(
       {required final String login,
-      required final String username,
       required final String password}) = _$SignUpDataImpl;
   const _SignUpData._() : super._();
 
   @override
   String get login;
-  @override
-  String get username;
   @override
   String get password;
   @override

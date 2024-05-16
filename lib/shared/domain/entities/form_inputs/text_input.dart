@@ -1,13 +1,13 @@
 import 'package:formz/formz.dart';
-import '../../../../app/app.dart';
+import '../../../../app/i18n/strings.g.dart';
 
 enum TextInputValidationError {
   empty;
 
-  String toText(AppLocalizations l10n) {
+  String toText(Translations l10n) {
     switch (this) {
       case TextInputValidationError.empty:
-        return l10n.errorTextForEmpty;
+        return l10n.errors.errorTextForEmpty;
     }
   }
 }

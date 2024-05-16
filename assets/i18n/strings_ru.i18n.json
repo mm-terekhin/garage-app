@@ -1,0 +1,23 @@
+{
+  "appMainTitle": "Гараж",
+  "gLogo": "G",
+  "otherLogo": "arage",
+  "errors": {
+    "errorTextForEmpty": "Пожалуйста заполните поле",
+    "errorTextForIncorrectRePassword": "Пароли не совпадают",
+    "errorTextForIncorrectPassword": "Пароль слишком легкий"
+  },
+  "log_in_screen": {
+    "loginLabel": "Логин",
+    "passwordLabel": "Пароль",
+    "logInButtonLabel": "Войти",
+    "registrationTitle": "Регистрация",
+    "mailLabel": "E-mail",
+    "usernameLabel": "Имя пользователя",
+    "confirmationPassword": "Подтверждение пароля",
+    "registrationButtonLabel": "Зарегестрироваться",
+    "haveAccountTitle": "Уже есть аккаунт?",
+    "forgotPasswordLabel": "Забыли пароль?",
+    "logInWithPhoneNumberLabel": "Войти с помощью телефона"
+  }
+}

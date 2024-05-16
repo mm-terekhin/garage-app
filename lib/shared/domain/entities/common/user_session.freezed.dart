@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserSession {
-  String get id => throw _privateConstructorUsedError;
+  TokenData get token => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,8 +30,9 @@ abstract class $UserSessionCopyWith<$Res> {
           UserSession value, $Res Function(UserSession) then) =
       _$UserSessionCopyWithImpl<$Res, UserSession>;
   @useResult
-  $Res call({String id, User user});
+  $Res call({TokenData token, User user});
 
+  $TokenDataCopyWith<$Res> get token;
   $UserCopyWith<$Res> get user;
 }
 
@@ -48,19 +49,27 @@ class _$UserSessionCopyWithImpl<$Res, $Val extends UserSession>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? token = null,
     Object? user = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as TokenData,
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TokenDataCopyWith<$Res> get token {
+    return $TokenDataCopyWith<$Res>(_value.token, (value) {
+      return _then(_value.copyWith(token: value) as $Val);
+    });
   }
 
   @override
@@ -80,8 +89,10 @@ abstract class _$$UserSessionImplCopyWith<$Res>
       __$$UserSessionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, User user});
+  $Res call({TokenData token, User user});
 
+  @override
+  $TokenDataCopyWith<$Res> get token;
   @override
   $UserCopyWith<$Res> get user;
 }
@@ -97,14 +108,14 @@ class __$$UserSessionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? token = null,
     Object? user = null,
   }) {
     return _then(_$UserSessionImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as TokenData,
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -116,16 +127,16 @@ class __$$UserSessionImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserSessionImpl implements _UserSession {
-  const _$UserSessionImpl({required this.id, required this.user});
+  const _$UserSessionImpl({required this.token, required this.user});
 
   @override
-  final String id;
+  final TokenData token;
   @override
   final User user;
 
   @override
   String toString() {
-    return 'UserSession(id: $id, user: $user)';
+    return 'UserSession(token: $token, user: $user)';
   }
 
   @override
@@ -133,12 +144,12 @@ class _$UserSessionImpl implements _UserSession {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserSessionImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.token, token) || other.token == token) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, user);
+  int get hashCode => Object.hash(runtimeType, token, user);
 
   @JsonKey(ignore: true)
   @override
@@ -149,10 +160,11 @@ class _$UserSessionImpl implements _UserSession {
 
 abstract class _UserSession implements UserSession {
   const factory _UserSession(
-      {required final String id, required final User user}) = _$UserSessionImpl;
+      {required final TokenData token,
+      required final User user}) = _$UserSessionImpl;
 
   @override
-  String get id;
+  TokenData get token;
   @override
   User get user;
   @override

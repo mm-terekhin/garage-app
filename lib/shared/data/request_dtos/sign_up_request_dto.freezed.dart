@@ -20,7 +20,6 @@ SignUpRequestDto _$SignUpRequestDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SignUpRequestDto {
-  String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
@@ -36,7 +35,7 @@ abstract class $SignUpRequestDtoCopyWith<$Res> {
           SignUpRequestDto value, $Res Function(SignUpRequestDto) then) =
       _$SignUpRequestDtoCopyWithImpl<$Res, SignUpRequestDto>;
   @useResult
-  $Res call({String name, String email, String password});
+  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -52,15 +51,10 @@ class _$SignUpRequestDtoCopyWithImpl<$Res, $Val extends SignUpRequestDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
     Object? email = null,
     Object? password = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -81,7 +75,7 @@ abstract class _$$SignUpRequestDtoImplCopyWith<$Res>
       __$$SignUpRequestDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String email, String password});
+  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -95,15 +89,10 @@ class __$$SignUpRequestDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
     Object? email = null,
     Object? password = null,
   }) {
     return _then(_$SignUpRequestDtoImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -119,14 +108,11 @@ class __$$SignUpRequestDtoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SignUpRequestDtoImpl implements _SignUpRequestDto {
-  const _$SignUpRequestDtoImpl(
-      {required this.name, required this.email, required this.password});
+  const _$SignUpRequestDtoImpl({required this.email, required this.password});
 
   factory _$SignUpRequestDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignUpRequestDtoImplFromJson(json);
 
-  @override
-  final String name;
   @override
   final String email;
   @override
@@ -134,7 +120,7 @@ class _$SignUpRequestDtoImpl implements _SignUpRequestDto {
 
   @override
   String toString() {
-    return 'SignUpRequestDto(name: $name, email: $email, password: $password)';
+    return 'SignUpRequestDto(email: $email, password: $password)';
   }
 
   @override
@@ -142,7 +128,6 @@ class _$SignUpRequestDtoImpl implements _SignUpRequestDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignUpRequestDtoImpl &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password));
@@ -150,7 +135,7 @@ class _$SignUpRequestDtoImpl implements _SignUpRequestDto {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, email, password);
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -169,15 +154,12 @@ class _$SignUpRequestDtoImpl implements _SignUpRequestDto {
 
 abstract class _SignUpRequestDto implements SignUpRequestDto {
   const factory _SignUpRequestDto(
-      {required final String name,
-      required final String email,
+      {required final String email,
       required final String password}) = _$SignUpRequestDtoImpl;
 
   factory _SignUpRequestDto.fromJson(Map<String, dynamic> json) =
       _$SignUpRequestDtoImpl.fromJson;
 
-  @override
-  String get name;
   @override
   String get email;
   @override

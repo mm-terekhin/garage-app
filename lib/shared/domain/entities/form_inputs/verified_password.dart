@@ -1,17 +1,16 @@
 import 'package:formz/formz.dart';
-
-import '../../../../app/app.dart';
+import '../../../../app/i18n/strings.g.dart';
 
 enum VerifiedPasswordValidationError {
   empty,
   incorrect;
 
-  String toText(AppLocalizations l10n) {
+  String toText(Translations l10n) {
     switch (this) {
       case VerifiedPasswordValidationError.empty:
-        return l10n.errorTextForEmpty;
+        return l10n.errors.errorTextForEmpty;
       case VerifiedPasswordValidationError.incorrect:
-        return l10n.errorTextForIncorrectRePassword;
+        return l10n.errors.errorTextForIncorrectRePassword;
     }
   }
 }

@@ -1,0 +1,23 @@
+{
+  "appMainTitle": "Garage",
+  "gLogo": "G",
+  "otherLogo": "arage",
+  "errors": {
+    "errorTextForEmpty": "Please fill in the field",
+    "errorTextForIncorrectRePassword": "Passwords don't match",
+    "errorTextForIncorrectPassword": "The password is too light"
+  },
+  "log_in_screen": {
+    "loginLabel": "Login",
+    "passwordLabel": "Password",
+    "logInButtonLabel": "Log In",
+    "registrationTitle": "Registration",
+    "mailLabel": "E-mail",
+    "usernameLabel": "Username",
+    "confirmationPassword": "Password confirmation",
+    "registrationButtonLabel": "Register",
+    "haveAccountTitle": "Already have an account?",
+    "forgotPasswordLabel" : "Forgot your password?",
+    "logInWithPhoneNumberLabel" : "Log in using your phone"
+  }
+}

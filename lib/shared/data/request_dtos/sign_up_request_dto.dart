@@ -6,7 +6,6 @@ part 'sign_up_request_dto.freezed.dart';
 @freezed
 class SignUpRequestDto with _$SignUpRequestDto {
   const factory SignUpRequestDto({
-    required String name,
     required String email,
     required String password,
   }) = _SignUpRequestDto;

@@ -16,8 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$User {
-  String get name => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
+  String? get mail => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
@@ -28,7 +29,7 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call({String name, String email});
+  $Res call({String username, String? mail, String? phone});
 }
 
 /// @nodoc
@@ -44,18 +45,23 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? email = null,
+    Object? username = null,
+    Object? mail = freezed,
+    Object? phone = freezed,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
+      mail: freezed == mail
+          ? _value.mail
+          : mail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -67,7 +73,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$UserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String email});
+  $Res call({String username, String? mail, String? phone});
 }
 
 /// @nodoc
@@ -80,18 +86,23 @@ class __$$UserImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? email = null,
+    Object? username = null,
+    Object? mail = freezed,
+    Object? phone = freezed,
   }) {
     return _then(_$UserImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
+      mail: freezed == mail
+          ? _value.mail
+          : mail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -99,16 +110,18 @@ class __$$UserImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserImpl implements _User {
-  const _$UserImpl({required this.name, required this.email});
+  const _$UserImpl({required this.username, this.mail, this.phone});
 
   @override
-  final String name;
+  final String username;
   @override
-  final String email;
+  final String? mail;
+  @override
+  final String? phone;
 
   @override
   String toString() {
-    return 'User(name: $name, email: $email)';
+    return 'User(username: $username, mail: $mail, phone: $phone)';
   }
 
   @override
@@ -116,12 +129,14 @@ class _$UserImpl implements _User {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.mail, mail) || other.mail == mail) &&
+            (identical(other.phone, phone) || other.phone == phone));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, email);
+  int get hashCode => Object.hash(runtimeType, username, mail, phone);
 
   @JsonKey(ignore: true)
   @override
@@ -132,12 +147,16 @@ class _$UserImpl implements _User {
 
 abstract class _User implements User {
   const factory _User(
-      {required final String name, required final String email}) = _$UserImpl;
+      {required final String username,
+      final String? mail,
+      final String? phone}) = _$UserImpl;
 
   @override
-  String get name;
+  String get username;
   @override
-  String get email;
+  String? get mail;
+  @override
+  String? get phone;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

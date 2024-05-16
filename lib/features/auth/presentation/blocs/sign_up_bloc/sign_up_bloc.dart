@@ -47,6 +47,34 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       return;
     }
 
+    try {
+      emit(
+        state.copyWith(
+          status: SignUpStatus.loading,
+        ),
+      );
 
+      await _signUpCase.call(
+        state.form.toModel(),
+      );
+
+      emit(
+        state.copyWith(
+          status: SignUpStatus.success,
+        ),
+      );
+    } on Exception catch (error, stackTrace) {
+      _talker.handle(
+        error,
+        stackTrace,
+        'Exception in SignUpBloc ---> _onSubmit',
+      );
+
+      emit(
+        state.copyWith(
+          status: SignUpStatus.failure,
+        ),
+      );
+    }
   }
 }
