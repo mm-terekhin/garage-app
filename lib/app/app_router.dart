@@ -32,6 +32,17 @@ class AppRouter {
           );
         },
       ),
+      GoRoute(
+        path: '/reset_password',
+        name: 'reset_password',
+        pageBuilder: (BuildContext context, GoRouterState state) {
+          return customTransitionPage<void>(
+            context: context,
+            state: state,
+            child: const ResetPasswordScreen(),
+          );
+        },
+      ),
     ],
   );
 

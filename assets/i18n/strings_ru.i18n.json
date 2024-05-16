@@ -19,5 +19,11 @@
     "haveAccountTitle": "Уже есть аккаунт?",
     "forgotPasswordLabel": "Забыли пароль?",
     "logInWithPhoneNumberLabel": "Войти с помощью телефона"
+  },
+  "reset_password_screen" : {
+    "title" : "Сброс пароля",
+    "newPasswordLabel" : "Новый пароль",
+    "confirmNewPasswordLabel" : "Подтвердите новый пароль",
+    "resetPasswordButtonLabel" : "Сбросить пароль"
   }
 }

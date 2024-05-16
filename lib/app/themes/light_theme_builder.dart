@@ -70,16 +70,16 @@ class LightThemeBuilder implements ThemeBuilder {
             borderRadius: BorderRadius.all(radii.x2),
           ),
         ),*/
-        backgroundColor: const MaterialStatePropertyAll<Color>(
+        backgroundColor: const WidgetStatePropertyAll<Color>(
           Colors.transparent,
         ),
-        padding: MaterialStatePropertyAll<EdgeInsetsGeometry>(
+        padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(
           EdgeInsets.symmetric(
             vertical: spacings.x3,
             horizontal: spacings.x7,
           ),
         ),
-        textStyle: MaterialStatePropertyAll<TextStyle>(
+        textStyle: WidgetStatePropertyAll<TextStyle>(
           textTheme.titleMedium!.copyWith(
             color: palette.textContrast,
           ),
@@ -96,21 +96,21 @@ class LightThemeBuilder implements ThemeBuilder {
   }) {
     return TextButtonThemeData(
       style: ButtonStyle(
-        overlayColor: MaterialStatePropertyAll<Color>(
+        overlayColor: WidgetStatePropertyAll<Color>(
           palette.borderPrimary.withOpacity(0.2),
         ),
-        shape: MaterialStateProperty.all(
+        shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(radii.x2),
           ),
         ),
-        padding: MaterialStatePropertyAll<EdgeInsetsGeometry>(
+        padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(
           EdgeInsets.symmetric(
             vertical: spacings.x3,
             horizontal: spacings.x7,
           ),
         ),
-        textStyle: MaterialStatePropertyAll<TextStyle>(
+        textStyle: WidgetStatePropertyAll<TextStyle>(
           textTheme.titleMedium!,
         ),
       ),

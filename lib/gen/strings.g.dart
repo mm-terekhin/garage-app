@@ -6,7 +6,7 @@
 /// Locales: 2
 /// Strings: 40 (20 per locale)
 ///
-/// Built on 2024-05-16 at 21:01 UTC
+/// Built on 2024-05-16 at 21:10 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -16,17 +16,17 @@ import 'package:slang/builder/model/node.dart';
 import 'package:slang_flutter/slang_flutter.dart';
 export 'package:slang_flutter/slang_flutter.dart';
 
-const AppLocale _baseLocale = AppLocale.ru;
+const AppLocale _baseLocale = AppLocale.en;
 
 /// Supported locales, see extension methods below.
 ///
 /// Usage:
-/// - LocaleSettings.setLocale(AppLocale.ru) // set locale
-/// - Locale locale = AppLocale.ru.flutterLocale // get flutter locale from enum
-/// - if (LocaleSettings.currentLocale == AppLocale.ru) // locale check
+/// - LocaleSettings.setLocale(AppLocale.en) // set locale
+/// - Locale locale = AppLocale.en.flutterLocale // get flutter locale from enum
+/// - if (LocaleSettings.currentLocale == AppLocale.en) // locale check
 enum AppLocale with BaseAppLocale<AppLocale, Translations> {
-	ru(languageCode: 'ru', build: Translations.build),
-	en(languageCode: 'en', build: _StringsEn.build);
+	en(languageCode: 'en', build: Translations.build),
+	ru(languageCode: 'ru', build: _StringsRu.build);
 
 	const AppLocale({required this.languageCode, this.scriptCode, this.countryCode, required this.build}); // ignore: unused_element
 
@@ -131,82 +131,6 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	Translations.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
 		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
 		  $meta = TranslationMetadata(
-		    locale: AppLocale.ru,
-		    overrides: overrides ?? {},
-		    cardinalResolver: cardinalResolver,
-		    ordinalResolver: ordinalResolver,
-		  ) {
-		$meta.setFlatMapFunction(_flatMapFunction);
-	}
-
-	/// Metadata for the translations of <ru>.
-	@override final TranslationMetadata<AppLocale, Translations> $meta;
-
-	/// Access flat map
-	dynamic operator[](String key) => $meta.getTranslation(key);
-
-	late final Translations _root = this; // ignore: unused_field
-
-	// Translations
-	String get appMainTitle => 'Гараж';
-	String get gLogo => 'G';
-	String get otherLogo => 'arage';
-	late final _StringsErrorsRu errors = _StringsErrorsRu._(_root);
-	late final _StringsLogInScreenRu log_in_screen = _StringsLogInScreenRu._(_root);
-	late final _StringsResetPasswordScreenRu reset_password_screen = _StringsResetPasswordScreenRu._(_root);
-}
-
-// Path: errors
-class _StringsErrorsRu {
-	_StringsErrorsRu._(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-	String get errorTextForEmpty => 'Пожалуйста заполните поле';
-	String get errorTextForIncorrectRePassword => 'Пароли не совпадают';
-	String get errorTextForIncorrectPassword => 'Пароль слишком легкий';
-}
-
-// Path: log_in_screen
-class _StringsLogInScreenRu {
-	_StringsLogInScreenRu._(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-	String get loginLabel => 'Логин';
-	String get passwordLabel => 'Пароль';
-	String get logInButtonLabel => 'Войти';
-	String get registrationTitle => 'Регистрация';
-	String get mailLabel => 'E-mail';
-	String get usernameLabel => 'Имя пользователя';
-	String get confirmationPassword => 'Подтверждение пароля';
-	String get registrationButtonLabel => 'Зарегестрироваться';
-	String get haveAccountTitle => 'Уже есть аккаунт?';
-	String get forgotPasswordLabel => 'Забыли пароль?';
-	String get logInWithPhoneNumberLabel => 'Войти с помощью телефона';
-}
-
-// Path: reset_password_screen
-class _StringsResetPasswordScreenRu {
-	_StringsResetPasswordScreenRu._(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-	String get newPasswordLabel => 'Новый пароль';
-	String get confirmNewPasswordLabel => 'Подтвердите новый пароль';
-	String get resetPasswordButtonLabel => 'Сбросить пароль';
-}
-
-// Path: <root>
-class _StringsEn implements Translations {
-	/// You can call this constructor and build your own translation instance of this locale.
-	/// Constructing via the enum [AppLocale.build] is preferred.
-	_StringsEn.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
-		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
-		  $meta = TranslationMetadata(
 		    locale: AppLocale.en,
 		    overrides: overrides ?? {},
 		    cardinalResolver: cardinalResolver,
@@ -219,95 +143,143 @@ class _StringsEn implements Translations {
 	@override final TranslationMetadata<AppLocale, Translations> $meta;
 
 	/// Access flat map
-	@override dynamic operator[](String key) => $meta.getTranslation(key);
+	dynamic operator[](String key) => $meta.getTranslation(key);
 
-	@override late final _StringsEn _root = this; // ignore: unused_field
+	late final Translations _root = this; // ignore: unused_field
 
 	// Translations
-	@override String get appMainTitle => 'Garage';
-	@override String get gLogo => 'G';
-	@override String get otherLogo => 'arage';
-	@override late final _StringsErrorsEn errors = _StringsErrorsEn._(_root);
-	@override late final _StringsLogInScreenEn log_in_screen = _StringsLogInScreenEn._(_root);
-	@override late final _StringsResetPasswordScreenEn reset_password_screen = _StringsResetPasswordScreenEn._(_root);
+	String get appMainTitle => 'Garage';
+	String get gLogo => 'G';
+	String get otherLogo => 'arage';
+	late final _StringsErrorsEn errors = _StringsErrorsEn._(_root);
+	late final _StringsLogInScreenEn log_in_screen = _StringsLogInScreenEn._(_root);
+	late final _StringsResetPasswordScreenEn reset_password_screen = _StringsResetPasswordScreenEn._(_root);
 }
 
 // Path: errors
-class _StringsErrorsEn implements _StringsErrorsRu {
+class _StringsErrorsEn {
 	_StringsErrorsEn._(this._root);
 
-	@override final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
-	@override String get errorTextForEmpty => 'Please fill in the field';
-	@override String get errorTextForIncorrectRePassword => 'Passwords don\'t match';
-	@override String get errorTextForIncorrectPassword => 'The password is too light';
+	String get errorTextForEmpty => 'Please fill in the field';
+	String get errorTextForIncorrectRePassword => 'Passwords don\'t match';
+	String get errorTextForIncorrectPassword => 'The password is too light';
 }
 
 // Path: log_in_screen
-class _StringsLogInScreenEn implements _StringsLogInScreenRu {
+class _StringsLogInScreenEn {
 	_StringsLogInScreenEn._(this._root);
 
-	@override final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
-	@override String get loginLabel => 'Login';
-	@override String get passwordLabel => 'Password';
-	@override String get logInButtonLabel => 'Log In';
-	@override String get registrationTitle => 'Registration';
-	@override String get mailLabel => 'E-mail';
-	@override String get usernameLabel => 'Username';
-	@override String get confirmationPassword => 'Password confirmation';
-	@override String get registrationButtonLabel => 'Register';
-	@override String get haveAccountTitle => 'Already have an account?';
-	@override String get forgotPasswordLabel => 'Forgot your password?';
-	@override String get logInWithPhoneNumberLabel => 'Log in using your phone';
+	String get loginLabel => 'Login';
+	String get passwordLabel => 'Password';
+	String get logInButtonLabel => 'Log In';
+	String get registrationTitle => 'Registration';
+	String get mailLabel => 'E-mail';
+	String get usernameLabel => 'Username';
+	String get confirmationPassword => 'Password confirmation';
+	String get registrationButtonLabel => 'Register';
+	String get haveAccountTitle => 'Already have an account?';
+	String get forgotPasswordLabel => 'Forgot your password?';
+	String get logInWithPhoneNumberLabel => 'Log in using your phone';
 }
 
 // Path: reset_password_screen
-class _StringsResetPasswordScreenEn implements _StringsResetPasswordScreenRu {
+class _StringsResetPasswordScreenEn {
 	_StringsResetPasswordScreenEn._(this._root);
 
-	@override final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
-	@override String get newPasswordLabel => 'New password';
-	@override String get confirmNewPasswordLabel => 'Confirm new password';
-	@override String get resetPasswordButtonLabel => 'Reset password';
+	String get newPasswordLabel => 'New password';
+	String get confirmNewPasswordLabel => 'Confirm new password';
+	String get resetPasswordButtonLabel => 'Reset password';
+}
+
+// Path: <root>
+class _StringsRu implements Translations {
+	/// You can call this constructor and build your own translation instance of this locale.
+	/// Constructing via the enum [AppLocale.build] is preferred.
+	_StringsRu.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
+		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
+		  $meta = TranslationMetadata(
+		    locale: AppLocale.ru,
+		    overrides: overrides ?? {},
+		    cardinalResolver: cardinalResolver,
+		    ordinalResolver: ordinalResolver,
+		  ) {
+		$meta.setFlatMapFunction(_flatMapFunction);
+	}
+
+	/// Metadata for the translations of <ru>.
+	@override final TranslationMetadata<AppLocale, Translations> $meta;
+
+	/// Access flat map
+	@override dynamic operator[](String key) => $meta.getTranslation(key);
+
+	@override late final _StringsRu _root = this; // ignore: unused_field
+
+	// Translations
+	@override String get appMainTitle => 'Гараж';
+	@override String get gLogo => 'G';
+	@override String get otherLogo => 'arage';
+	@override late final _StringsErrorsRu errors = _StringsErrorsRu._(_root);
+	@override late final _StringsLogInScreenRu log_in_screen = _StringsLogInScreenRu._(_root);
+	@override late final _StringsResetPasswordScreenRu reset_password_screen = _StringsResetPasswordScreenRu._(_root);
+}
+
+// Path: errors
+class _StringsErrorsRu implements _StringsErrorsEn {
+	_StringsErrorsRu._(this._root);
+
+	@override final _StringsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get errorTextForEmpty => 'Пожалуйста заполните поле';
+	@override String get errorTextForIncorrectRePassword => 'Пароли не совпадают';
+	@override String get errorTextForIncorrectPassword => 'Пароль слишком легкий';
+}
+
+// Path: log_in_screen
+class _StringsLogInScreenRu implements _StringsLogInScreenEn {
+	_StringsLogInScreenRu._(this._root);
+
+	@override final _StringsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get loginLabel => 'Логин';
+	@override String get passwordLabel => 'Пароль';
+	@override String get logInButtonLabel => 'Войти';
+	@override String get registrationTitle => 'Регистрация';
+	@override String get mailLabel => 'E-mail';
+	@override String get usernameLabel => 'Имя пользователя';
+	@override String get confirmationPassword => 'Подтверждение пароля';
+	@override String get registrationButtonLabel => 'Зарегестрироваться';
+	@override String get haveAccountTitle => 'Уже есть аккаунт?';
+	@override String get forgotPasswordLabel => 'Забыли пароль?';
+	@override String get logInWithPhoneNumberLabel => 'Войти с помощью телефона';
+}
+
+// Path: reset_password_screen
+class _StringsResetPasswordScreenRu implements _StringsResetPasswordScreenEn {
+	_StringsResetPasswordScreenRu._(this._root);
+
+	@override final _StringsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get newPasswordLabel => 'Новый пароль';
+	@override String get confirmNewPasswordLabel => 'Подтвердите новый пароль';
+	@override String get resetPasswordButtonLabel => 'Сбросить пароль';
 }
 
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 
 extension on Translations {
-	dynamic _flatMapFunction(String path) {
-		switch (path) {
-			case 'appMainTitle': return 'Гараж';
-			case 'gLogo': return 'G';
-			case 'otherLogo': return 'arage';
-			case 'errors.errorTextForEmpty': return 'Пожалуйста заполните поле';
-			case 'errors.errorTextForIncorrectRePassword': return 'Пароли не совпадают';
-			case 'errors.errorTextForIncorrectPassword': return 'Пароль слишком легкий';
-			case 'log_in_screen.loginLabel': return 'Логин';
-			case 'log_in_screen.passwordLabel': return 'Пароль';
-			case 'log_in_screen.logInButtonLabel': return 'Войти';
-			case 'log_in_screen.registrationTitle': return 'Регистрация';
-			case 'log_in_screen.mailLabel': return 'E-mail';
-			case 'log_in_screen.usernameLabel': return 'Имя пользователя';
-			case 'log_in_screen.confirmationPassword': return 'Подтверждение пароля';
-			case 'log_in_screen.registrationButtonLabel': return 'Зарегестрироваться';
-			case 'log_in_screen.haveAccountTitle': return 'Уже есть аккаунт?';
-			case 'log_in_screen.forgotPasswordLabel': return 'Забыли пароль?';
-			case 'log_in_screen.logInWithPhoneNumberLabel': return 'Войти с помощью телефона';
-			case 'reset_password_screen.newPasswordLabel': return 'Новый пароль';
-			case 'reset_password_screen.confirmNewPasswordLabel': return 'Подтвердите новый пароль';
-			case 'reset_password_screen.resetPasswordButtonLabel': return 'Сбросить пароль';
-			default: return null;
-		}
-	}
-}
-
-extension on _StringsEn {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'appMainTitle': return 'Garage';
@@ -330,6 +302,34 @@ extension on _StringsEn {
 			case 'reset_password_screen.newPasswordLabel': return 'New password';
 			case 'reset_password_screen.confirmNewPasswordLabel': return 'Confirm new password';
 			case 'reset_password_screen.resetPasswordButtonLabel': return 'Reset password';
+			default: return null;
+		}
+	}
+}
+
+extension on _StringsRu {
+	dynamic _flatMapFunction(String path) {
+		switch (path) {
+			case 'appMainTitle': return 'Гараж';
+			case 'gLogo': return 'G';
+			case 'otherLogo': return 'arage';
+			case 'errors.errorTextForEmpty': return 'Пожалуйста заполните поле';
+			case 'errors.errorTextForIncorrectRePassword': return 'Пароли не совпадают';
+			case 'errors.errorTextForIncorrectPassword': return 'Пароль слишком легкий';
+			case 'log_in_screen.loginLabel': return 'Логин';
+			case 'log_in_screen.passwordLabel': return 'Пароль';
+			case 'log_in_screen.logInButtonLabel': return 'Войти';
+			case 'log_in_screen.registrationTitle': return 'Регистрация';
+			case 'log_in_screen.mailLabel': return 'E-mail';
+			case 'log_in_screen.usernameLabel': return 'Имя пользователя';
+			case 'log_in_screen.confirmationPassword': return 'Подтверждение пароля';
+			case 'log_in_screen.registrationButtonLabel': return 'Зарегестрироваться';
+			case 'log_in_screen.haveAccountTitle': return 'Уже есть аккаунт?';
+			case 'log_in_screen.forgotPasswordLabel': return 'Забыли пароль?';
+			case 'log_in_screen.logInWithPhoneNumberLabel': return 'Войти с помощью телефона';
+			case 'reset_password_screen.newPasswordLabel': return 'Новый пароль';
+			case 'reset_password_screen.confirmNewPasswordLabel': return 'Подтвердите новый пароль';
+			case 'reset_password_screen.resetPasswordButtonLabel': return 'Сбросить пароль';
 			default: return null;
 		}
 	}

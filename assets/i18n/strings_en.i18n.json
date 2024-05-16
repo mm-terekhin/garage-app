@@ -17,7 +17,13 @@
     "confirmationPassword": "Password confirmation",
     "registrationButtonLabel": "Register",
     "haveAccountTitle": "Already have an account?",
-    "forgotPasswordLabel" : "Forgot your password?",
-    "logInWithPhoneNumberLabel" : "Log in using your phone"
+    "forgotPasswordLabel": "Forgot your password?",
+    "logInWithPhoneNumberLabel": "Log in using your phone"
+  },
+  "reset_password_screen": {
+    "title" : "Reset password",
+    "newPasswordLabel": "New password",
+    "confirmNewPasswordLabel": "Confirm new password",
+    "resetPasswordButtonLabel": "Reset password"
   }
 }

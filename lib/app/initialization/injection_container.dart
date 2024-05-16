@@ -114,6 +114,9 @@ FutureOr<void> _registerBlocs() async {
         signUpCase: _getIt(),
       ),
     )
+    ..registerFactory<ResetPasswordBloc>(
+      () => ResetPasswordBloc(),
+    )
     //Locale
     ..registerFactory<LocaleCubit>(
       () => LocaleCubit(

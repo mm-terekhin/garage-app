@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garage/app/app.dart';
 import 'package:garage/features/features.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../app/i18n/strings.g.dart';
 import '../../../../shared/shared.dart';
 import '../../auth.dart';
 
@@ -94,7 +92,7 @@ class LogInView extends StatelessWidget {
                         SecondaryButton(
                           style: ButtonStyle(
                             padding:
-                                MaterialStatePropertyAll<EdgeInsetsGeometry>(
+                                WidgetStatePropertyAll<EdgeInsetsGeometry>(
                               EdgeInsets.symmetric(
                                 horizontal: theme.spacings.x1,
                               ),
@@ -112,16 +110,17 @@ class LogInView extends StatelessWidget {
                           ),
                           style: ButtonStyle(
                             padding:
-                                MaterialStatePropertyAll<EdgeInsetsGeometry>(
+                                WidgetStatePropertyAll<EdgeInsetsGeometry>(
                               EdgeInsets.symmetric(
                                 horizontal: theme.spacings.x1,
                               ),
                             ),
-                            overlayColor: MaterialStatePropertyAll<Color>(
+                            overlayColor: WidgetStatePropertyAll<Color>(
                               theme.palette.borderPrimary.withOpacity(0.2),
                             ),
                           ),
-                          onPressed: () async {},
+                          onPressed: () async {
+                            router.pushNamed('reset_password');},
                           title: context.l10n.log_in_screen.forgotPasswordLabel,
                         ),
                       ],
