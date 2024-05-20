@@ -5,9 +5,10 @@
   "errors": {
     "errorTextForEmpty": "Пожалуйста заполните поле",
     "errorTextForIncorrectRePassword": "Пароли не совпадают",
-    "errorTextForIncorrectPassword": "Пароль слишком легкий"
+    "errorTextForIncorrectPassword": "Пароль слишком легкий",
+    "errorTextIncorrectForEmail": "Введите корректный e-mail"
   },
-  "log_in_screen": {
+  "auth": {
     "loginLabel": "Логин",
     "passwordLabel": "Пароль",
     "logInButtonLabel": "Войти",
@@ -18,12 +19,18 @@
     "registrationButtonLabel": "Зарегестрироваться",
     "haveAccountTitle": "Уже есть аккаунт?",
     "forgotPasswordLabel": "Забыли пароль?",
-    "logInWithPhoneNumberLabel": "Войти с помощью телефона"
-  },
-  "reset_password_screen" : {
-    "title" : "Сброс пароля",
-    "newPasswordLabel" : "Новый пароль",
-    "confirmNewPasswordLabel" : "Подтвердите новый пароль",
-    "resetPasswordButtonLabel" : "Сбросить пароль"
+    "logInWithPhoneNumberLabel": "Войти с помощью телефона",
+    "title": "Сброс пароля",
+    "newPasswordLabel": "Новый пароль",
+    "confirmNewPasswordLabel": "Подтвердите новый пароль",
+    "resetPasswordButtonLabel": "Сбросить пароль",
+    "sendEmailButtonLabel": "Отправить письмо",
+    "sendConfirmMailButton": "Отправить повторно",
+    "checkMailHeader": "Проверьте почту",
+    "descriptionForConfirmMail": "На $mail была отправлена ссылка для подтверждения. Перейдите по ней и подтвердите ваш аккаунт",
+    "descriptionForResetPassword": "На $mail была отправлена ссылка для  восстановления. Перейдите по ней и придумайте новый пароль",
+    "passwordResetSuccessful" : "Пароль успешно сброшен",
+    "passwordResetDescription" : "Используйте новый пароль при последующих авторизациях в приложении",
+    "goLoginScreenButtonLabel" : "Вернуться на страницу входа"
   }
 }

@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 40 (20 per locale)
+/// Strings: 60 (30 per locale)
 ///
-/// Built on 2024-05-16 at 21:01 UTC
+/// Built on 2024-05-18 at 14:18 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -152,8 +152,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get gLogo => 'G';
 	String get otherLogo => 'arage';
 	late final _StringsErrorsRu errors = _StringsErrorsRu._(_root);
-	late final _StringsLogInScreenRu log_in_screen = _StringsLogInScreenRu._(_root);
-	late final _StringsResetPasswordScreenRu reset_password_screen = _StringsResetPasswordScreenRu._(_root);
+	late final _StringsAuthRu auth = _StringsAuthRu._(_root);
 }
 
 // Path: errors
@@ -166,11 +165,12 @@ class _StringsErrorsRu {
 	String get errorTextForEmpty => 'Пожалуйста заполните поле';
 	String get errorTextForIncorrectRePassword => 'Пароли не совпадают';
 	String get errorTextForIncorrectPassword => 'Пароль слишком легкий';
+	String get errorTextIncorrectForEmail => 'Введите корректный e-mail';
 }
 
-// Path: log_in_screen
-class _StringsLogInScreenRu {
-	_StringsLogInScreenRu._(this._root);
+// Path: auth
+class _StringsAuthRu {
+	_StringsAuthRu._(this._root);
 
 	final Translations _root; // ignore: unused_field
 
@@ -186,18 +186,18 @@ class _StringsLogInScreenRu {
 	String get haveAccountTitle => 'Уже есть аккаунт?';
 	String get forgotPasswordLabel => 'Забыли пароль?';
 	String get logInWithPhoneNumberLabel => 'Войти с помощью телефона';
-}
-
-// Path: reset_password_screen
-class _StringsResetPasswordScreenRu {
-	_StringsResetPasswordScreenRu._(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
+	String get title => 'Сброс пароля';
 	String get newPasswordLabel => 'Новый пароль';
 	String get confirmNewPasswordLabel => 'Подтвердите новый пароль';
 	String get resetPasswordButtonLabel => 'Сбросить пароль';
+	String get sendEmailButtonLabel => 'Отправить письмо';
+	String get sendConfirmMailButton => 'Отправить повторно';
+	String get checkMailHeader => 'Проверьте почту';
+	String descriptionForConfirmMail({required Object mail}) => 'На ${mail} была отправлена ссылка для подтверждения. Перейдите по ней и подтвердите ваш аккаунт';
+	String descriptionForResetPassword({required Object mail}) => 'На ${mail} была отправлена ссылка для  восстановления. Перейдите по ней и придумайте новый пароль';
+	String get passwordResetSuccessful => 'Пароль успешно сброшен';
+	String get passwordResetDescription => 'Используйте новый пароль при последующих авторизациях в приложении';
+	String get goLoginScreenButtonLabel => 'Вернуться на страницу входа';
 }
 
 // Path: <root>
@@ -228,8 +228,7 @@ class _StringsEn implements Translations {
 	@override String get gLogo => 'G';
 	@override String get otherLogo => 'arage';
 	@override late final _StringsErrorsEn errors = _StringsErrorsEn._(_root);
-	@override late final _StringsLogInScreenEn log_in_screen = _StringsLogInScreenEn._(_root);
-	@override late final _StringsResetPasswordScreenEn reset_password_screen = _StringsResetPasswordScreenEn._(_root);
+	@override late final _StringsAuthEn auth = _StringsAuthEn._(_root);
 }
 
 // Path: errors
@@ -242,11 +241,12 @@ class _StringsErrorsEn implements _StringsErrorsRu {
 	@override String get errorTextForEmpty => 'Please fill in the field';
 	@override String get errorTextForIncorrectRePassword => 'Passwords don\'t match';
 	@override String get errorTextForIncorrectPassword => 'The password is too light';
+	@override String get errorTextIncorrectForEmail => 'Enter a valid e-mail';
 }
 
-// Path: log_in_screen
-class _StringsLogInScreenEn implements _StringsLogInScreenRu {
-	_StringsLogInScreenEn._(this._root);
+// Path: auth
+class _StringsAuthEn implements _StringsAuthRu {
+	_StringsAuthEn._(this._root);
 
 	@override final _StringsEn _root; // ignore: unused_field
 
@@ -262,18 +262,18 @@ class _StringsLogInScreenEn implements _StringsLogInScreenRu {
 	@override String get haveAccountTitle => 'Already have an account?';
 	@override String get forgotPasswordLabel => 'Forgot your password?';
 	@override String get logInWithPhoneNumberLabel => 'Log in using your phone';
-}
-
-// Path: reset_password_screen
-class _StringsResetPasswordScreenEn implements _StringsResetPasswordScreenRu {
-	_StringsResetPasswordScreenEn._(this._root);
-
-	@override final _StringsEn _root; // ignore: unused_field
-
-	// Translations
+	@override String get title => 'Reset password';
 	@override String get newPasswordLabel => 'New password';
 	@override String get confirmNewPasswordLabel => 'Confirm new password';
 	@override String get resetPasswordButtonLabel => 'Reset password';
+	@override String get sendEmailButtonLabel => 'Send an email';
+	@override String get sendConfirmMailButton => 'Resend';
+	@override String get checkMailHeader => 'Check the mail';
+	@override String descriptionForConfirmMail({required Object mail}) => 'A confirmation link has been sent to the ${mail}. Click on it and confirm your account';
+	@override String descriptionForResetPassword({required Object mail}) => 'A recovery link has been sent to your ${mail}. Click on it and come up with a new password';
+	@override String get passwordResetSuccessful => 'The password has been successfully reset';
+	@override String get passwordResetDescription => 'Use the new password for subsequent authorizations in the application';
+	@override String get goLoginScreenButtonLabel => 'Go back to the login page';
 }
 
 /// Flat map(s) containing all translations.
@@ -288,20 +288,30 @@ extension on Translations {
 			case 'errors.errorTextForEmpty': return 'Пожалуйста заполните поле';
 			case 'errors.errorTextForIncorrectRePassword': return 'Пароли не совпадают';
 			case 'errors.errorTextForIncorrectPassword': return 'Пароль слишком легкий';
-			case 'log_in_screen.loginLabel': return 'Логин';
-			case 'log_in_screen.passwordLabel': return 'Пароль';
-			case 'log_in_screen.logInButtonLabel': return 'Войти';
-			case 'log_in_screen.registrationTitle': return 'Регистрация';
-			case 'log_in_screen.mailLabel': return 'E-mail';
-			case 'log_in_screen.usernameLabel': return 'Имя пользователя';
-			case 'log_in_screen.confirmationPassword': return 'Подтверждение пароля';
-			case 'log_in_screen.registrationButtonLabel': return 'Зарегестрироваться';
-			case 'log_in_screen.haveAccountTitle': return 'Уже есть аккаунт?';
-			case 'log_in_screen.forgotPasswordLabel': return 'Забыли пароль?';
-			case 'log_in_screen.logInWithPhoneNumberLabel': return 'Войти с помощью телефона';
-			case 'reset_password_screen.newPasswordLabel': return 'Новый пароль';
-			case 'reset_password_screen.confirmNewPasswordLabel': return 'Подтвердите новый пароль';
-			case 'reset_password_screen.resetPasswordButtonLabel': return 'Сбросить пароль';
+			case 'errors.errorTextIncorrectForEmail': return 'Введите корректный e-mail';
+			case 'auth.loginLabel': return 'Логин';
+			case 'auth.passwordLabel': return 'Пароль';
+			case 'auth.logInButtonLabel': return 'Войти';
+			case 'auth.registrationTitle': return 'Регистрация';
+			case 'auth.mailLabel': return 'E-mail';
+			case 'auth.usernameLabel': return 'Имя пользователя';
+			case 'auth.confirmationPassword': return 'Подтверждение пароля';
+			case 'auth.registrationButtonLabel': return 'Зарегестрироваться';
+			case 'auth.haveAccountTitle': return 'Уже есть аккаунт?';
+			case 'auth.forgotPasswordLabel': return 'Забыли пароль?';
+			case 'auth.logInWithPhoneNumberLabel': return 'Войти с помощью телефона';
+			case 'auth.title': return 'Сброс пароля';
+			case 'auth.newPasswordLabel': return 'Новый пароль';
+			case 'auth.confirmNewPasswordLabel': return 'Подтвердите новый пароль';
+			case 'auth.resetPasswordButtonLabel': return 'Сбросить пароль';
+			case 'auth.sendEmailButtonLabel': return 'Отправить письмо';
+			case 'auth.sendConfirmMailButton': return 'Отправить повторно';
+			case 'auth.checkMailHeader': return 'Проверьте почту';
+			case 'auth.descriptionForConfirmMail': return ({required Object mail}) => 'На ${mail} была отправлена ссылка для подтверждения. Перейдите по ней и подтвердите ваш аккаунт';
+			case 'auth.descriptionForResetPassword': return ({required Object mail}) => 'На ${mail} была отправлена ссылка для  восстановления. Перейдите по ней и придумайте новый пароль';
+			case 'auth.passwordResetSuccessful': return 'Пароль успешно сброшен';
+			case 'auth.passwordResetDescription': return 'Используйте новый пароль при последующих авторизациях в приложении';
+			case 'auth.goLoginScreenButtonLabel': return 'Вернуться на страницу входа';
 			default: return null;
 		}
 	}
@@ -316,20 +326,30 @@ extension on _StringsEn {
 			case 'errors.errorTextForEmpty': return 'Please fill in the field';
 			case 'errors.errorTextForIncorrectRePassword': return 'Passwords don\'t match';
 			case 'errors.errorTextForIncorrectPassword': return 'The password is too light';
-			case 'log_in_screen.loginLabel': return 'Login';
-			case 'log_in_screen.passwordLabel': return 'Password';
-			case 'log_in_screen.logInButtonLabel': return 'Log In';
-			case 'log_in_screen.registrationTitle': return 'Registration';
-			case 'log_in_screen.mailLabel': return 'E-mail';
-			case 'log_in_screen.usernameLabel': return 'Username';
-			case 'log_in_screen.confirmationPassword': return 'Password confirmation';
-			case 'log_in_screen.registrationButtonLabel': return 'Register';
-			case 'log_in_screen.haveAccountTitle': return 'Already have an account?';
-			case 'log_in_screen.forgotPasswordLabel': return 'Forgot your password?';
-			case 'log_in_screen.logInWithPhoneNumberLabel': return 'Log in using your phone';
-			case 'reset_password_screen.newPasswordLabel': return 'New password';
-			case 'reset_password_screen.confirmNewPasswordLabel': return 'Confirm new password';
-			case 'reset_password_screen.resetPasswordButtonLabel': return 'Reset password';
+			case 'errors.errorTextIncorrectForEmail': return 'Enter a valid e-mail';
+			case 'auth.loginLabel': return 'Login';
+			case 'auth.passwordLabel': return 'Password';
+			case 'auth.logInButtonLabel': return 'Log In';
+			case 'auth.registrationTitle': return 'Registration';
+			case 'auth.mailLabel': return 'E-mail';
+			case 'auth.usernameLabel': return 'Username';
+			case 'auth.confirmationPassword': return 'Password confirmation';
+			case 'auth.registrationButtonLabel': return 'Register';
+			case 'auth.haveAccountTitle': return 'Already have an account?';
+			case 'auth.forgotPasswordLabel': return 'Forgot your password?';
+			case 'auth.logInWithPhoneNumberLabel': return 'Log in using your phone';
+			case 'auth.title': return 'Reset password';
+			case 'auth.newPasswordLabel': return 'New password';
+			case 'auth.confirmNewPasswordLabel': return 'Confirm new password';
+			case 'auth.resetPasswordButtonLabel': return 'Reset password';
+			case 'auth.sendEmailButtonLabel': return 'Send an email';
+			case 'auth.sendConfirmMailButton': return 'Resend';
+			case 'auth.checkMailHeader': return 'Check the mail';
+			case 'auth.descriptionForConfirmMail': return ({required Object mail}) => 'A confirmation link has been sent to the ${mail}. Click on it and confirm your account';
+			case 'auth.descriptionForResetPassword': return ({required Object mail}) => 'A recovery link has been sent to your ${mail}. Click on it and come up with a new password';
+			case 'auth.passwordResetSuccessful': return 'The password has been successfully reset';
+			case 'auth.passwordResetDescription': return 'Use the new password for subsequent authorizations in the application';
+			case 'auth.goLoginScreenButtonLabel': return 'Go back to the login page';
 			default: return null;
 		}
 	}

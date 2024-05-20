@@ -16,24 +16,24 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LogInForm {
-  TextInput get email => throw _privateConstructorUsedError;
+  EmailInput get email => throw _privateConstructorUsedError;
   TextInput get password => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(TextInput email, TextInput password) $default, {
-    required TResult Function(TextInput email, TextInput password) pure,
+    TResult Function(EmailInput email, TextInput password) $default, {
+    required TResult Function(EmailInput email, TextInput password) pure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(TextInput email, TextInput password)? $default, {
-    TResult? Function(TextInput email, TextInput password)? pure,
+    TResult? Function(EmailInput email, TextInput password)? $default, {
+    TResult? Function(EmailInput email, TextInput password)? pure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(TextInput email, TextInput password)? $default, {
-    TResult Function(TextInput email, TextInput password)? pure,
+    TResult Function(EmailInput email, TextInput password)? $default, {
+    TResult Function(EmailInput email, TextInput password)? pure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,7 +67,7 @@ abstract class $LogInFormCopyWith<$Res> {
   factory $LogInFormCopyWith(LogInForm value, $Res Function(LogInForm) then) =
       _$LogInFormCopyWithImpl<$Res, LogInForm>;
   @useResult
-  $Res call({TextInput email, TextInput password});
+  $Res call({EmailInput email, TextInput password});
 }
 
 /// @nodoc
@@ -90,7 +90,7 @@ class _$LogInFormCopyWithImpl<$Res, $Val extends LogInForm>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as TextInput,
+              as EmailInput,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
@@ -107,7 +107,7 @@ abstract class _$$LogInFormPureImplCopyWith<$Res>
       __$$LogInFormPureImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TextInput email, TextInput password});
+  $Res call({EmailInput email, TextInput password});
 }
 
 /// @nodoc
@@ -128,7 +128,7 @@ class __$$LogInFormPureImplCopyWithImpl<$Res>
       null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as TextInput,
+              as EmailInput,
       null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
@@ -141,13 +141,13 @@ class __$$LogInFormPureImplCopyWithImpl<$Res>
 
 class _$LogInFormPureImpl extends _LogInFormPure {
   const _$LogInFormPureImpl(
-      [this.email = const TextInput.pure(),
+      [this.email = const EmailInput.pure(),
       this.password = const TextInput.pure()])
       : super._();
 
   @override
   @JsonKey()
-  final TextInput email;
+  final EmailInput email;
   @override
   @JsonKey()
   final TextInput password;
@@ -179,8 +179,8 @@ class _$LogInFormPureImpl extends _LogInFormPure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(TextInput email, TextInput password) $default, {
-    required TResult Function(TextInput email, TextInput password) pure,
+    TResult Function(EmailInput email, TextInput password) $default, {
+    required TResult Function(EmailInput email, TextInput password) pure,
   }) {
     return pure(email, password);
   }
@@ -188,8 +188,8 @@ class _$LogInFormPureImpl extends _LogInFormPure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(TextInput email, TextInput password)? $default, {
-    TResult? Function(TextInput email, TextInput password)? pure,
+    TResult? Function(EmailInput email, TextInput password)? $default, {
+    TResult? Function(EmailInput email, TextInput password)? pure,
   }) {
     return pure?.call(email, password);
   }
@@ -197,8 +197,8 @@ class _$LogInFormPureImpl extends _LogInFormPure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(TextInput email, TextInput password)? $default, {
-    TResult Function(TextInput email, TextInput password)? pure,
+    TResult Function(EmailInput email, TextInput password)? $default, {
+    TResult Function(EmailInput email, TextInput password)? pure,
     required TResult orElse(),
   }) {
     if (pure != null) {
@@ -241,11 +241,11 @@ class _$LogInFormPureImpl extends _LogInFormPure {
 
 abstract class _LogInFormPure extends LogInForm {
   const factory _LogInFormPure(
-      [final TextInput email, final TextInput password]) = _$LogInFormPureImpl;
+      [final EmailInput email, final TextInput password]) = _$LogInFormPureImpl;
   const _LogInFormPure._() : super._();
 
   @override
-  TextInput get email;
+  EmailInput get email;
   @override
   TextInput get password;
   @override
@@ -262,7 +262,7 @@ abstract class _$$LogInFormImplCopyWith<$Res>
       __$$LogInFormImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TextInput email, TextInput password});
+  $Res call({EmailInput email, TextInput password});
 }
 
 /// @nodoc
@@ -283,7 +283,7 @@ class __$$LogInFormImplCopyWithImpl<$Res>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as TextInput,
+              as EmailInput,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
@@ -299,7 +299,7 @@ class _$LogInFormImpl extends _LogInForm {
       : super._();
 
   @override
-  final TextInput email;
+  final EmailInput email;
   @override
   final TextInput password;
 
@@ -330,8 +330,8 @@ class _$LogInFormImpl extends _LogInForm {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(TextInput email, TextInput password) $default, {
-    required TResult Function(TextInput email, TextInput password) pure,
+    TResult Function(EmailInput email, TextInput password) $default, {
+    required TResult Function(EmailInput email, TextInput password) pure,
   }) {
     return $default(email, password);
   }
@@ -339,8 +339,8 @@ class _$LogInFormImpl extends _LogInForm {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(TextInput email, TextInput password)? $default, {
-    TResult? Function(TextInput email, TextInput password)? pure,
+    TResult? Function(EmailInput email, TextInput password)? $default, {
+    TResult? Function(EmailInput email, TextInput password)? pure,
   }) {
     return $default?.call(email, password);
   }
@@ -348,8 +348,8 @@ class _$LogInFormImpl extends _LogInForm {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(TextInput email, TextInput password)? $default, {
-    TResult Function(TextInput email, TextInput password)? pure,
+    TResult Function(EmailInput email, TextInput password)? $default, {
+    TResult Function(EmailInput email, TextInput password)? pure,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -392,12 +392,12 @@ class _$LogInFormImpl extends _LogInForm {
 
 abstract class _LogInForm extends LogInForm {
   const factory _LogInForm(
-      {required final TextInput email,
+      {required final EmailInput email,
       required final TextInput password}) = _$LogInFormImpl;
   const _LogInForm._() : super._();
 
   @override
-  TextInput get email;
+  EmailInput get email;
   @override
   TextInput get password;
   @override

@@ -1,8 +1,10 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:garage/features/auth/auth.dart';
 import 'package:talker_flutter/talker_flutter.dart';
+import '../../../../../core/core.dart';
 import '../../../../../shared/domain/domain.dart';
 
 part 'log_in_event.dart';
@@ -54,10 +56,20 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
         ),
       );
 
-      await _logInCase.call(
+      final credential = await _logInCase.call(
         state.form.toModel(),
       );
 
+      emit(
+        state.copyWith(
+          credential: credential,
+        ),
+      );
+
+
+      if (!(credential.user?.emailVerified ?? false)) {
+        throw UnverifiedMailException();
+      }
       emit(
         state.copyWith(
           status: LogInStatus.success,
@@ -73,6 +85,7 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
       emit(
         state.copyWith(
           status: LogInStatus.failure,
+          unverified: error is UnverifiedMailException,
         ),
       );
     }

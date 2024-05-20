@@ -16,7 +16,7 @@ class LogInView extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: BlocBuilder<LogInBloc, LogInState>(
+        child: BlocConsumer<LogInBloc, LogInState>(
           builder: (context, state) {
             return GestureDetector(
               onTap: () {
@@ -38,13 +38,11 @@ class LogInView extends StatelessWidget {
                       errorText: state.isError
                           ? state.form.email.error?.toText(context.l10n)
                           : null,
-                      labelText: context.l10n.log_in_screen.mailLabel,
+                      labelText: context.l10n.auth.mailLabel,
                       initialValue: state.form.email.value,
                       onChanged: (value) {
                         final newForm = state.form.copyWith(
-                          email: state.form.email.toDirty(
-                            value: value,
-                          ),
+                          email: EmailInput.dirty(value: value),
                         );
 
                         context.read<LogInBloc>().add(
@@ -54,12 +52,11 @@ class LogInView extends StatelessWidget {
                             );
                       },
                     ),
-                    SimpleField(
+                    PasswordField(
                       errorText: state.isError
                           ? state.form.password.error?.toText(context.l10n)
                           : null,
-                      labelText: context.l10n.log_in_screen.passwordLabel,
-                      initialValue: state.form.password.value,
+                      labelText: context.l10n.auth.passwordLabel,
                       onChanged: (value) {
                         final newForm = state.form.copyWith(
                           password: state.form.password.toDirty(
@@ -81,7 +78,7 @@ class LogInView extends StatelessWidget {
                               SubmitLogInEvent(),
                             );
                       },
-                      title: context.l10n.log_in_screen.logInButtonLabel,
+                      title: context.l10n.auth.logInButtonLabel,
                     ),
                     SizedBox(
                       height: theme.spacings.x4,
@@ -91,8 +88,7 @@ class LogInView extends StatelessWidget {
                       children: [
                         SecondaryButton(
                           style: ButtonStyle(
-                            padding:
-                                WidgetStatePropertyAll<EdgeInsetsGeometry>(
+                            padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(
                               EdgeInsets.symmetric(
                                 horizontal: theme.spacings.x1,
                               ),
@@ -101,7 +97,7 @@ class LogInView extends StatelessWidget {
                           onPressed: () {
                             router.pushNamed('registration');
                           },
-                          title: context.l10n.log_in_screen.registrationTitle,
+                          title: context.l10n.auth.registrationTitle,
                         ),
                         SecondaryButton(
                           textStyle: theme.textTheme.bodyLarge?.copyWith(
@@ -109,8 +105,7 @@ class LogInView extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                           style: ButtonStyle(
-                            padding:
-                                WidgetStatePropertyAll<EdgeInsetsGeometry>(
+                            padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(
                               EdgeInsets.symmetric(
                                 horizontal: theme.spacings.x1,
                               ),
@@ -120,8 +115,9 @@ class LogInView extends StatelessWidget {
                             ),
                           ),
                           onPressed: () async {
-                            router.pushNamed('reset_password');},
-                          title: context.l10n.log_in_screen.forgotPasswordLabel,
+                            router.pushNamed('reset_password');
+                          },
+                          title: context.l10n.auth.forgotPasswordLabel,
                         ),
                       ],
                     ),
@@ -133,6 +129,14 @@ class LogInView extends StatelessWidget {
                 ),
               ),
             );
+          },
+          listener: (BuildContext context, LogInState state) {
+            if (state.unverified && state.credential != null) {
+              router.replaceNamed(
+                'confirm_mail',
+                extra: state.credential,
+              );
+            }
           },
         ),
       ),

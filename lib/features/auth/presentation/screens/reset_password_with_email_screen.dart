@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import '../../auth.dart';
 
 class ResetPasswordWithEmailScreen extends StatelessWidget {
@@ -6,6 +8,9 @@ class ResetPasswordWithEmailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResetPasswordWithEmailView();
+    return BlocProvider(
+      create: (context) => GetIt.instance<ResetPasswordWithEmailBloc>(),
+      child: const ResetPasswordWithEmailView(),
+    );
   }
 }

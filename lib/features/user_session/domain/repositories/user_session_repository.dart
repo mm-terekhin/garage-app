@@ -1,7 +1,11 @@
-abstract interface class UserSessionRepository {
-  Future<void> setSession();
+import '../../../../shared/domain/domain.dart';
 
-  Future<void> getSession();
+abstract interface class UserSessionRepository {
+  Future<void> setSession({required UserSession userSession});
+
+  UserSession getUserSession();
 
   Future<void> removeSession();
+
+  Stream<UserSession> get userSessionChanges;
 }

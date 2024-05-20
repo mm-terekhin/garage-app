@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:garage/features/auth/auth.dart';
@@ -54,13 +55,14 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         ),
       );
 
-      await _signUpCase.call(
+     final credential =  await _signUpCase.call(
         state.form.toModel(),
       );
 
       emit(
         state.copyWith(
           status: SignUpStatus.success,
+            credential : credential,
         ),
       );
     } on Exception catch (error, stackTrace) {

@@ -13,6 +13,8 @@ class Palette extends ThemeExtension<Palette> {
     //Border
     required this.borderPrimary,
     required this.borderError,
+    //Icon
+    required this.iconPrimary,
   });
 
   const Palette.light()
@@ -28,6 +30,8 @@ class Palette extends ThemeExtension<Palette> {
           //Border
           borderPrimary: const Color(0xFFced4da),
           borderError: const Color(0xFFD00000),
+          //Icon
+          iconPrimary: const Color(0xFFadb5bd),
         );
 
   // Text
@@ -44,6 +48,9 @@ class Palette extends ThemeExtension<Palette> {
   final Color borderPrimary;
   final Color borderError;
 
+  //Icon
+  final Color iconPrimary;
+
   @override
   Palette copyWith({
     Color? textPrimary,
@@ -54,6 +61,7 @@ class Palette extends ThemeExtension<Palette> {
     Color? bgContrast,
     Color? borderPrimary,
     Color? borderError,
+    Color? iconPrimary,
   }) {
     return Palette(
       // Text
@@ -67,6 +75,7 @@ class Palette extends ThemeExtension<Palette> {
       // Border
       borderPrimary: borderPrimary ?? this.borderPrimary,
       borderError: borderError ?? this.borderError,
+      iconPrimary: iconPrimary ?? this.iconPrimary,
     );
   }
 
@@ -88,6 +97,8 @@ class Palette extends ThemeExtension<Palette> {
       // Border
       borderPrimary: Color.lerp(borderPrimary, other.borderPrimary, t)!,
       borderError: Color.lerp(borderError, other.borderError, t)!,
+      //Icon
+      iconPrimary: Color.lerp(iconPrimary, other.iconPrimary, t)!,
     );
   }
 }

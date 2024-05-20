@@ -1,10 +1,14 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:garage/features/features.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger.dart';
 import 'package:talker_flutter/talker_flutter.dart';
+
+import '../../shared/shared.dart';
 
 final _getIt = GetIt.instance;
 
@@ -38,6 +42,13 @@ FutureOr<void> _registerServices() async {
     //Hive
     ..registerLazySingleton<HiveInterface>(
       () => Hive,
+    )
+    //other
+    ..registerLazySingleton<FlutterSecureStorage>(
+      FlutterSecureStorage.new,
+    )
+    ..registerLazySingleton<Base64Codec>(
+      Base64Codec.new,
     );
 }
 
@@ -53,6 +64,21 @@ FutureOr<void> _registerDataSources() async {
     ..registerSingletonAsync<LocaleLocaleDataSource>(
       () async => LocaleLocaleDataSourceImpl.create(
         hive: _getIt(),
+      ),
+    )
+    //Cipher
+    ..registerLazySingleton<HiveCipherDataSource>(
+      () => HiveCipherDataSourceImpl(
+        secureStorage: _getIt(),
+        hive: _getIt(),
+        base64codec: _getIt(),
+      ),
+    )
+    //UserSession
+    ..registerLazySingletonAsync<LocaleUserSessionDataSource>(
+      () async => LocaleUserSessionDataSourceImpl.create(
+        hive: _getIt(),
+        hiveCipherDataSource: _getIt(),
       ),
     );
 }
@@ -86,6 +112,11 @@ FutureOr<void> _registerUseCases() async {
         authRepository: _getIt(),
       ),
     )
+    ..registerLazySingleton<ConfirmMailCase>(
+      () => ConfirmMailCase(
+        authRepository: _getIt(),
+      ),
+    )
     //Locale
     ..registerLazySingleton<GetLocaleCase>(
       () => GetLocaleCase(
@@ -116,6 +147,15 @@ FutureOr<void> _registerBlocs() async {
     )
     ..registerFactory<ResetPasswordBloc>(
       () => ResetPasswordBloc(),
+    )
+    ..registerFactory<ResetPasswordWithEmailBloc>(
+      () => ResetPasswordWithEmailBloc(),
+    )
+    ..registerFactoryParam<ConfirmMailBloc, UserCredential, Object?>(
+      (param1, param2) => ConfirmMailBloc(
+        credential: param1,
+        confirmMailCase: _getIt(),
+      ),
     )
     //Locale
     ..registerFactory<LocaleCubit>(

@@ -116,6 +116,7 @@ class SimpleField extends StatelessWidget {
           floatingLabelStyle: theme.textTheme.bodyLarge!.copyWith(
             color: theme.palette.textSecondary,
           ),
+          suffixIcon: suffixIcon,
           contentPadding: EdgeInsets.only(
             top: theme.spacings.x2,
             bottom: theme.spacings.x2,

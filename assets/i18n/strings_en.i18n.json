@@ -5,9 +5,10 @@
   "errors": {
     "errorTextForEmpty": "Please fill in the field",
     "errorTextForIncorrectRePassword": "Passwords don't match",
-    "errorTextForIncorrectPassword": "The password is too light"
+    "errorTextForIncorrectPassword": "The password is too light",
+    "errorTextIncorrectForEmail": "Enter a valid e-mail"
   },
-  "log_in_screen": {
+  "auth": {
     "loginLabel": "Login",
     "passwordLabel": "Password",
     "logInButtonLabel": "Log In",
@@ -18,12 +19,18 @@
     "registrationButtonLabel": "Register",
     "haveAccountTitle": "Already have an account?",
     "forgotPasswordLabel": "Forgot your password?",
-    "logInWithPhoneNumberLabel": "Log in using your phone"
-  },
-  "reset_password_screen": {
-    "title" : "Reset password",
+    "logInWithPhoneNumberLabel": "Log in using your phone",
+    "title": "Reset password",
     "newPasswordLabel": "New password",
     "confirmNewPasswordLabel": "Confirm new password",
-    "resetPasswordButtonLabel": "Reset password"
+    "resetPasswordButtonLabel": "Reset password",
+    "sendEmailButtonLabel": "Send an email",
+    "sendConfirmMailButton": "Resend",
+    "checkMailHeader": "Check the mail",
+    "descriptionForConfirmMail": "A confirmation link has been sent to the $mail. Click on it and confirm your account",
+    "descriptionForResetPassword": "A recovery link has been sent to your $mail. Click on it and come up with a new password",
+    "passwordResetSuccessful": "The password has been successfully reset",
+    "passwordResetDescription": "Use the new password for subsequent authorizations in the application",
+    "goLoginScreenButtonLabel": "Go back to the login page"
   }
 }

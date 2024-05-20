@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:garage/shared/data/data.dart';
 import 'package:garage/shared/domain/entities/auth/log_in_data.dart';
 import 'package:garage/shared/domain/entities/auth/sign_up_data.dart';
@@ -13,7 +14,7 @@ class AuthRepositoryImpl implements AuthRepository {
   final RemoteAuthDataSource _remoteAuthDataSource;
 
   @override
-  Future<void> logIn({
+  Future<UserCredential> logIn({
     required LogInData data,
   }) async {
     final response = await _remoteAuthDataSource.logIn(
@@ -23,13 +24,11 @@ class AuthRepositoryImpl implements AuthRepository {
       ),
     );
 
-    if (!(response.user?.emailVerified ?? false)) {
-      throw UnverifiedMailException();
-    }
+    return response;
   }
 
   @override
-  Future<void> signUp({
+  Future<UserCredential> signUp({
     required SignUpData data,
   }) async {
     final credential = await _remoteAuthDataSource.signUp(
@@ -39,6 +38,17 @@ class AuthRepositoryImpl implements AuthRepository {
       ),
     );
 
+    await _remoteAuthDataSource.sendEmail(
+      credential: credential,
+    );
+
+    return credential;
+  }
+
+  @override
+  Future<void> sendEmail({
+    required UserCredential credential,
+  }) async {
     await _remoteAuthDataSource.sendEmail(
       credential: credential,
     );

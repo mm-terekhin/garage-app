@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../features/features.dart';
@@ -33,6 +34,17 @@ class AppRouter {
         },
       ),
       GoRoute(
+        path: '/reset_password_with_email',
+        name: 'reset_password_with_email',
+        pageBuilder: (BuildContext context, GoRouterState state) {
+          return customTransitionPage<void>(
+            context: context,
+            state: state,
+            child: const ResetPasswordWithEmailScreen(),
+          );
+        },
+      ),
+      GoRoute(
         path: '/reset_password',
         name: 'reset_password',
         pageBuilder: (BuildContext context, GoRouterState state) {
@@ -40,6 +52,25 @@ class AppRouter {
             context: context,
             state: state,
             child: const ResetPasswordScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        path: '/confirm_mail',
+        name: 'confirm_mail',
+        pageBuilder: (BuildContext context, GoRouterState state) {
+          if (state.extra == null) {
+            throw ArgumentError();
+          }
+
+          final credential = state.extra as UserCredential;
+
+          return customTransitionPage<void>(
+            context: context,
+            state: state,
+            child: ConfirmMailScreen(
+              credential: credential,
+            ),
           );
         },
       ),

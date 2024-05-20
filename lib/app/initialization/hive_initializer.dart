@@ -4,7 +4,11 @@ import '../../shared/shared.dart';
 Future<void> initializeHive() async {
   await Hive.initFlutter();
 
-  Hive.registerAdapter(LocaleAdapter());
+  Hive
+    ..registerAdapter(LocaleHiveAdapter())
+    ..registerAdapter(TokenHiveAdapter())
+    ..registerAdapter(UserHiveAdapter())
+    ..registerAdapter(UserSessionHiveAdapter());
 
   //Hive.deleteBoxFromDisk('Name disk');
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:garage/core/core.dart';
 
 class UnverifiedMailException extends AuthException {
@@ -5,4 +6,5 @@ class UnverifiedMailException extends AuthException {
     super.code = 'unverified',
     super.message = 'Your email is not verified',
   });
+
 }
