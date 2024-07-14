@@ -9,7 +9,7 @@ class SecondaryButton extends StatelessWidget {
     super.key,
   });
 
-  final void Function() onPressed;
+  final void Function()? onPressed;
   final String title;
   final ButtonStyle? style;
   final TextStyle? textStyle;

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garage/app/app.dart';
 import 'package:garage/shared/domain/domain.dart';
 import 'package:garage/shared/presentation/presentation.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../auth.dart';
 
@@ -11,15 +12,15 @@ class ResetPasswordWithEmailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AuthAppBar(title: '',),
       body: SafeArea(
         child: BlocBuilder<ResetPasswordWithEmailBloc,
             ResetPasswordWithEmailState>(
           builder: (context, state) {
-            if (state.status.isSuccess) {
+            if (state.viewStatus.isSubmitted) {
               return _Success(
                 mail: state.email.value,
                 isLoading: state.status.isLoading,
@@ -106,37 +107,63 @@ class _Success extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final router = GoRouter.of(context);
 
-    return ListView(
-      padding: EdgeInsets.all(
-        theme.spacings.x4,
-      ),
-      physics: const BouncingScrollPhysics(),
-      shrinkWrap: true,
-      children: [
-        Text(
-          context.l10n.auth.checkMailHeader,
-          style: theme.textTheme.titleLarge,
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(
-          height: theme.spacings.x4,
-        ),
-        Text(
-          context.l10n.auth.descriptionForResetPassword(
-            mail: mail,
+    return BlocBuilder<TimersBloc, TimersState>(
+      builder: (context, state) {
+        return ListView(
+          padding: EdgeInsets.all(
+            theme.spacings.x4,
           ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(
-          height: theme.spacings.x5,
-        ),
-        SubmissionButton(
-          isLoading: isLoading,
-          onPressed: () {},
-          title: context.l10n.auth.sendConfirmMailButton,
-        ),
-      ],
+          physics: const BouncingScrollPhysics(),
+          shrinkWrap: true,
+          children: [
+            Text(
+              context.l10n.auth.checkMailHeader,
+              style: theme.textTheme.titleLarge,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: theme.spacings.x4,
+            ),
+            Text(
+              context.l10n.auth.descriptionForResetPassword(
+                mail: mail,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: theme.spacings.x5,
+            ),
+            PrimaryButton(
+              onPressed: () {
+                router.replaceNamed('sign_in');
+              },
+              title: context.l10n.auth.goLoginScreenButtonLabel,
+            ),
+            SizedBox(
+              height: theme.spacings.x4,
+            ),
+            isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : SecondaryButton(
+                    onPressed: state.resetPasswordTimeoutSeconds > 0
+                        ? null
+                        : () {
+                            context.read<ResetPasswordWithEmailBloc>().add(
+                                  const SubmitResetPasswordWithEmailEvent(),
+                                );
+                          },
+                    title: state.resetPasswordTimeoutSeconds > 0
+                        ? context.l10n.auth.sendConfirmMailButtonSeconds(
+                            seconds: state.resetPasswordTimeoutSeconds)
+                        : context.l10n.auth.sendConfirmMailButton,
+                  ),
+          ],
+        );
+      },
     );
   }
 }

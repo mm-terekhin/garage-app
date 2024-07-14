@@ -14,10 +14,9 @@ class RegistrationView extends StatelessWidget {
     final router = GoRouter.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
+      appBar: AuthAppBar(
+        title:
           context.l10n.auth.registrationTitle,
-        ),
       ),
       body: SafeArea(
         child: BlocConsumer<SignUpBloc, SignUpState>(

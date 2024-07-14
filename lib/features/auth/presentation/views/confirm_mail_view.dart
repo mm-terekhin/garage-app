@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garage/app/app.dart';
 import 'package:garage/features/auth/auth.dart';
+import 'package:garage/shared/presentation/presentation.dart';
+import 'package:go_router/go_router.dart';
 
 class ConfirmMailView extends StatelessWidget {
   const ConfirmMailView({super.key});
@@ -9,9 +11,10 @@ class ConfirmMailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final router = GoRouter.of(context);
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: const AuthAppBar(title: '',),
       body: BlocBuilder<ConfirmMailBloc, ConfirmMailState>(
         builder: (context, state) {
           return ListView(
@@ -38,15 +41,27 @@ class ConfirmMailView extends StatelessWidget {
               SizedBox(
                 height: theme.spacings.x5,
               ),
-              SubmissionButton(
-                isLoading: state.status.isLoading,
+              PrimaryButton(
                 onPressed: () {
-                  context.read<ConfirmMailBloc>().add(
-                        ResendConfirmMailEvent(),
-                      );
+                  router.replaceNamed('sign_in');
                 },
-                title: context.l10n.auth.sendConfirmMailButton,
+                title: context.l10n.auth.goLoginScreenButtonLabel,
               ),
+              SizedBox(
+                height: theme.spacings.x4,
+              ),
+              state.status.isLoading
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : SecondaryButton(
+                      onPressed: () {
+                        context.read<ConfirmMailBloc>().add(
+                              ResendConfirmMailEvent(),
+                            );
+                      },
+                      title: context.l10n.auth.sendConfirmMailButton,
+                    ),
             ],
           );
         },

@@ -2,17 +2,17 @@ import 'package:hive/hive.dart';
 
 import '../../shared.dart';
 
-class UserHiveAdapter extends TypeAdapter<User> {
+class UserHiveAdapter extends TypeAdapter<UserData> {
   @override
   final int typeId = 1;
 
   @override
-  User read(BinaryReader reader) {
+  UserData read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return User(
+    return UserData(
       username: fields[0] as String,
       mail: fields[1] as String?,
       phone: fields[2] as String?,
@@ -20,7 +20,7 @@ class UserHiveAdapter extends TypeAdapter<User> {
   }
 
   @override
-  void write(BinaryWriter writer, User obj) {
+  void write(BinaryWriter writer, UserData obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)

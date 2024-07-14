@@ -1,13 +1,14 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:garage/shared/data/data.dart';
 import 'package:garage/shared/domain/entities/auth/log_in_data.dart';
 import 'package:garage/shared/domain/entities/auth/sign_up_data.dart';
 
-import '../../../../core/core.dart';
 import '../../auth.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  const AuthRepositoryImpl({
+  AuthRepositoryImpl({
     required RemoteAuthDataSource remoteAuthDataSource,
   }) : _remoteAuthDataSource = remoteAuthDataSource;
 
@@ -52,5 +53,22 @@ class AuthRepositoryImpl implements AuthRepository {
     await _remoteAuthDataSource.sendEmail(
       credential: credential,
     );
+  }
+
+  @override
+  Future<void> resetPassword({
+    required String email,
+  }) async {
+    await _remoteAuthDataSource.resetPassword(email: email);
+  }
+
+  @override
+  Future<void> logOut() async {
+    await _remoteAuthDataSource.logOut();
+  }
+
+  @override
+  Future<void> deleteAccount() async {
+    await _remoteAuthDataSource.deleteAccount();
   }
 }

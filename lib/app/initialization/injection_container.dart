@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:garage/app/app.dart';
 import 'package:garage/features/features.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
@@ -39,9 +40,8 @@ FutureOr<void> _registerServices() async {
     ..registerLazySingleton<FirebaseAuth>(
       () => FirebaseAuth.instance,
     )
-    //Hive
-    ..registerLazySingleton<HiveInterface>(
-      () => Hive,
+    ..registerLazySingleton<AppRouter>(
+      AppRouter.new,
     )
     //other
     ..registerLazySingleton<FlutterSecureStorage>(
@@ -49,6 +49,10 @@ FutureOr<void> _registerServices() async {
     )
     ..registerLazySingleton<Base64Codec>(
       Base64Codec.new,
+    )
+    //Hive
+    ..registerLazySingleton<HiveInterface>(
+      () => Hive,
     );
 }
 
@@ -75,7 +79,7 @@ FutureOr<void> _registerDataSources() async {
       ),
     )
     //UserSession
-    ..registerLazySingletonAsync<LocaleUserSessionDataSource>(
+    ..registerSingletonAsync<LocaleUserSessionDataSource>(
       () async => LocaleUserSessionDataSourceImpl.create(
         hive: _getIt(),
         hiveCipherDataSource: _getIt(),
@@ -95,6 +99,12 @@ FutureOr<void> _registerRepositories() async {
     ..registerLazySingleton<LocaleRepository>(
       () => LocaleRepositoryImpl(
         localeDataSource: _getIt(),
+      ),
+    )
+    //UserSession
+    ..registerLazySingleton<UserSessionRepository>(
+      () => UserSessionRepositoryImpl(
+        localeUserSessionDataSource: _getIt(),
       ),
     );
 }
@@ -117,6 +127,16 @@ FutureOr<void> _registerUseCases() async {
         authRepository: _getIt(),
       ),
     )
+    ..registerLazySingleton<ResetPasswordCase>(
+      () => ResetPasswordCase(
+        authRepository: _getIt(),
+      ),
+    )
+    ..registerLazySingleton<LogOutCase>(
+      () => LogOutCase(
+        authRepository: _getIt(),
+      ),
+    )
     //Locale
     ..registerLazySingleton<GetLocaleCase>(
       () => GetLocaleCase(
@@ -126,6 +146,27 @@ FutureOr<void> _registerUseCases() async {
     ..registerLazySingleton<SetLocaleCase>(
       () => SetLocaleCase(
         localeRepository: _getIt(),
+      ),
+    )
+    //UserSession
+    ..registerLazySingleton<GetUserSessionCase>(
+      () => GetUserSessionCase(
+        userSessionRepository: _getIt(),
+      ),
+    )
+    ..registerLazySingleton<RemoveUserSessionCase>(
+      () => RemoveUserSessionCase(
+        userSessionRepository: _getIt(),
+      ),
+    )
+    ..registerLazySingleton<SetUserSessionCase>(
+      () => SetUserSessionCase(
+        userSessionRepository: _getIt(),
+      ),
+    )
+    ..registerLazySingleton<DeleteAccountCase>(
+      () => DeleteAccountCase(
+        authRepository: _getIt(),
       ),
     );
 }
@@ -137,6 +178,7 @@ FutureOr<void> _registerBlocs() async {
       () => LogInBloc(
         talker: _getIt(),
         logInCase: _getIt(),
+        setUserSessionCase: _getIt(),
       ),
     )
     ..registerFactory<SignUpBloc>(
@@ -149,7 +191,9 @@ FutureOr<void> _registerBlocs() async {
       () => ResetPasswordBloc(),
     )
     ..registerFactory<ResetPasswordWithEmailBloc>(
-      () => ResetPasswordWithEmailBloc(),
+      () => ResetPasswordWithEmailBloc(
+        resetPasswordCase: _getIt(),
+      ),
     )
     ..registerFactoryParam<ConfirmMailBloc, UserCredential, Object?>(
       (param1, param2) => ConfirmMailBloc(
@@ -162,6 +206,24 @@ FutureOr<void> _registerBlocs() async {
       () => LocaleCubit(
         getLocaleCase: _getIt(),
         setLocaleCase: _getIt(),
+      ),
+    )
+    //UserSession
+    ..registerLazySingleton<UserSessionCubit>(
+      () => UserSessionCubit(
+        userSessionRepository: _getIt(),
+      ),
+    )
+    //Other
+    ..registerLazySingleton<TimersBloc>(
+      TimersBloc.new,
+    )
+    //Profile
+    ..registerFactory<ProfileBloc>(
+      () => ProfileBloc(
+        logOutCase: _getIt(),
+        removeUserSessionCase: _getIt(),
+        deleteAccountCase: _getIt(),
       ),
     );
 }

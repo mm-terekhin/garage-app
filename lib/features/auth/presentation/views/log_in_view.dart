@@ -115,7 +115,7 @@ class LogInView extends StatelessWidget {
                             ),
                           ),
                           onPressed: () async {
-                            router.pushNamed('reset_password');
+                            router.pushNamed('reset_password_with_email');
                           },
                           title: context.l10n.auth.forgotPasswordLabel,
                         ),
@@ -131,10 +131,9 @@ class LogInView extends StatelessWidget {
             );
           },
           listener: (BuildContext context, LogInState state) {
-            if (state.unverified && state.credential != null) {
+            if (state.status.isSuccess ) {
               router.replaceNamed(
-                'confirm_mail',
-                extra: state.credential,
+                'news',
               );
             }
           },

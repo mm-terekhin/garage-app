@@ -2,6 +2,14 @@
   "appMainTitle": "Гараж",
   "gLogo": "G",
   "otherLogo": "arage",
+  "homeNavBarLabel": "Главная",
+  "garageNavBarLabel": "Гараж",
+  "chatsNavBarLabel": "Чаты",
+  "profileNavBarLabel": "Профиль",
+  "cancelLabelButton": "Отмена",
+  "dateFieldLabel": "Дата",
+  "mileageFieldLabel": "Пробег",
+  "descriptionFieldLabel": "Комментарий",
   "errors": {
     "errorTextForEmpty": "Пожалуйста заполните поле",
     "errorTextForIncorrectRePassword": "Пароли не совпадают",
@@ -29,8 +37,29 @@
     "checkMailHeader": "Проверьте почту",
     "descriptionForConfirmMail": "На $mail была отправлена ссылка для подтверждения. Перейдите по ней и подтвердите ваш аккаунт",
     "descriptionForResetPassword": "На $mail была отправлена ссылка для  восстановления. Перейдите по ней и придумайте новый пароль",
-    "passwordResetSuccessful" : "Пароль успешно сброшен",
-    "passwordResetDescription" : "Используйте новый пароль при последующих авторизациях в приложении",
-    "goLoginScreenButtonLabel" : "Вернуться на страницу входа"
+    "passwordResetSuccessful": "Пароль успешно сброшен",
+    "passwordResetDescription": "Используйте новый пароль при последующих авторизациях в приложении",
+    "goLoginScreenButtonLabel": "Вернуться на страницу входа",
+    "sendConfirmMailButtonSeconds": "Отправить повторно через $seconds сек."
+  },
+  "profile": {
+    "notificationsButtonLabel": "Уведомления",
+    "personalSettingsButtonLabel": "Персональные настройки",
+    "languageButtonLabel": "Язык",
+    "exitButtonLabel": "Выйти",
+    "deleteAccountButtonLabel": "Удалить",
+    "deleteAccountTitle": "Удалить аккаунт",
+    "deleteAccountDescriptionDialog": "Вы уверены, что хотите удалить ваш аккаунт? Восстановить его будет невозможно",
+    "logOutTitleDialog": "Выйти из аккаунта",
+    "logOutDescriptionDialog": "Вы уверены, что хотите выйти из аккаунта?"
+  },
+  "myGarage": {
+    "engineOilLabel": "Моторное масло",
+    "transmissionOilFirstLabel": "Масло коробки передач",
+    "transmissionOilSecondLabel": "Трансмиссионное масло",
+    "brakeFluidLabel": "Тормозная жидкость",
+    "powerSteeringFluidLabel": "Рабочая жидкость гидроусилителя руля",
+    "antifreezeLabel": "Антифриз",
+    "refrigerantAirConditionerLabel": "Хладагент кондиционера"
   }
 }

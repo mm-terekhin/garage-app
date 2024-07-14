@@ -2,10 +2,11 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:garage/features/auth/auth.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import '../../../../../core/core.dart';
 import '../../../../../shared/domain/domain.dart';
+import '../../../../features.dart';
+import '../../../auth.dart';
 
 part 'log_in_event.dart';
 
@@ -15,8 +16,10 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
   LogInBloc({
     required Talker talker,
     required LogInCase logInCase,
+    required SetUserSessionCase setUserSessionCase,
   })  : _talker = talker,
         _logInCase = logInCase,
+        _setUserSessionCase = setUserSessionCase,
         super(const LogInState.initial()) {
     on<ChangeFormLogInEvent>(_onChangeForm);
     on<SubmitLogInEvent>(_onSubmit);
@@ -24,6 +27,7 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
 
   final Talker _talker;
   final LogInCase _logInCase;
+  final SetUserSessionCase _setUserSessionCase;
 
   void _onChangeForm(
     ChangeFormLogInEvent event,
@@ -60,18 +64,25 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
         state.form.toModel(),
       );
 
-      emit(
-        state.copyWith(
-          credential: credential,
+      final userSession = UserSession(
+        token: TokenData(
+          accessToken: credential.credential?.accessToken ?? '',
+          uid: credential.user?.uid ?? '',
+        ),
+        user: UserData(
+          username: credential.user?.displayName ?? '',
+          mail: credential.user?.email,
+          phone: credential.user?.phoneNumber,
         ),
       );
 
+      await _setUserSessionCase.call(
+        userSession,
+      );
 
-      if (!(credential.user?.emailVerified ?? false)) {
-        throw UnverifiedMailException();
-      }
       emit(
         state.copyWith(
+          credential: credential,
           status: LogInStatus.success,
         ),
       );

@@ -2,6 +2,14 @@
   "appMainTitle": "Garage",
   "gLogo": "G",
   "otherLogo": "arage",
+  "homeNavBarLabel": "Home",
+  "garageNavBarLabel": "Garage",
+  "chatsNavBarLabel": "Chats",
+  "profileNavBarLabel": "Profile",
+  "cancelLabelButton": "Cancel",
+  "dateFieldLabel": "Date",
+  "mileageFieldLabel": "Mileage",
+  "descriptionFieldLabel": "Description",
   "errors": {
     "errorTextForEmpty": "Please fill in the field",
     "errorTextForIncorrectRePassword": "Passwords don't match",
@@ -31,6 +39,29 @@
     "descriptionForResetPassword": "A recovery link has been sent to your $mail. Click on it and come up with a new password",
     "passwordResetSuccessful": "The password has been successfully reset",
     "passwordResetDescription": "Use the new password for subsequent authorizations in the application",
-    "goLoginScreenButtonLabel": "Go back to the login page"
+    "goLoginScreenButtonLabel": "Go back to the login page",
+    "sendConfirmMailButtonSeconds": "Send again in $seconds sec."
+  },
+  "profile": {
+    "notificationsButtonLabel": "Notifications",
+    "personalSettingsButtonLabel": "Personal settings",
+    "languageButtonLabel": "Language",
+    "exitButtonLabel": "Log out",
+    "deleteAccountButtonLabel" : "Delete",
+    "deleteAccountTitle": "Delete account",
+    "deleteAccountDescriptionDialog": "Are you sure you want to delete your account? It will be impossible to restore it.",
+    "logOutTitleDialog": "Log out of your account",
+    "logOutDescriptionDialog": "Are you sure you want to log out of your account? "
+  },
+  "myGarage": {
+    "engineOilLabel": "Engine oil",
+    "transmissionOilFirstLabel": "Transmission oil first part",
+    "transmissionOilFirstDescription": "...",
+    "transmissionOilSecondLabel": "Transmission oil second part",
+    "transmissionOilSecondDescription": "...",
+    "brakeFluidLabel": "Brake fluid",
+    "powerSteeringFluidLabel": "Power steering fluid",
+    "antifreezeLabel": "Antifreeze",
+    "refrigerantAirConditionerLabel": "Air conditioner refrigerant"
   }
 }

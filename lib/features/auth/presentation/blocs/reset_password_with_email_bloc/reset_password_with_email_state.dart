@@ -15,31 +15,45 @@ enum ResetPasswordWithEmailStatus {
   bool get isFailure => this == failure;
 }
 
+enum ViewStatus {
+  initial,
+  submitted;
+
+  bool get isInitial => this == initial;
+
+  bool get isSubmitted => this == submitted;
+}
+
 class ResetPasswordWithEmailState extends Equatable with FormzMixin {
   const ResetPasswordWithEmailState({
     required this.status,
     required this.email,
     required this.isError,
+    required this.viewStatus,
   });
 
   const ResetPasswordWithEmailState.initial()
       : status = ResetPasswordWithEmailStatus.initial,
         email = const EmailInput.pure(),
-        isError = false;
+        isError = false,
+        viewStatus = ViewStatus.initial;
 
   final ResetPasswordWithEmailStatus status;
   final EmailInput email;
   final bool isError;
+  final ViewStatus viewStatus;
 
   ResetPasswordWithEmailState copyWith({
     ResetPasswordWithEmailStatus? status,
     EmailInput? email,
     bool? isError,
+    ViewStatus? viewStatus,
   }) {
     return ResetPasswordWithEmailState(
       status: status ?? this.status,
       email: email ?? this.email,
       isError: isError ?? this.isError,
+      viewStatus: viewStatus ?? this.viewStatus,
     );
   }
 
@@ -48,6 +62,7 @@ class ResetPasswordWithEmailState extends Equatable with FormzMixin {
         status,
         email,
         isError,
+        viewStatus,
       ];
 
   @override

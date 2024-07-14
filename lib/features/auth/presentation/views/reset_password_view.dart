@@ -13,10 +13,9 @@ class ResetPasswordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
+      appBar: AuthAppBar(
+        title:
           context.l10n.auth.title,
-        ),
       ),
       body: SafeArea(
         child: BlocBuilder<ResetPasswordBloc, ResetPasswordState>(

@@ -33,6 +33,7 @@ dependencies:
   hive_flutter: ^1.1.0
   flutter_secure_storage: ^4.2.1
   font_awesome_flutter: ^10.7.0
+  firebase_dynamic_links: ^5.5.5
 
 dev_dependencies:
   flutter_test:
@@ -85,11 +86,12 @@ flutter:
         - asset: assets/fonts/rubik_italic/Rubik-BlackItalic.ttf
           style: italic
           weight: 900
-
     - family: SairaStencilOne
       fonts:
         - asset: assets/fonts/saira_stencil_one/SairaStencilOne-Regular.ttf
+    - family: MyCustomIcons
+      fonts:
+        - asset: assets/fonts/custom_icons/MyCustomIcons.ttf
 
   assets:
     - assets/images/
-    - assets/icons/

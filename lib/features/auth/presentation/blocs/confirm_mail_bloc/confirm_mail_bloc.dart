@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get_it/get_it.dart';
 
+import '../../../../../shared/shared.dart';
 import '../../../auth.dart';
 
 part 'confirm_mail_event.dart';

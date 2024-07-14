@@ -14,7 +14,7 @@ class UserSessionHiveAdapter extends TypeAdapter<UserSession> {
     };
     return UserSession(
       token: fields[0] as TokenData?,
-      user: fields[1] as User?,
+      user: fields[1] as UserData?,
     );
   }
 
