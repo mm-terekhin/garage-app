@@ -1,10 +1,15 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:garage/app/app.dart';
 import 'package:garage/features/features.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger.dart';
 import 'package:talker_flutter/talker_flutter.dart';
+
+import '../../shared/shared.dart';
 
 final _getIt = GetIt.instance;
 
@@ -35,6 +40,16 @@ FutureOr<void> _registerServices() async {
     ..registerLazySingleton<FirebaseAuth>(
       () => FirebaseAuth.instance,
     )
+    ..registerLazySingleton<AppRouter>(
+      AppRouter.new,
+    )
+    //other
+    ..registerLazySingleton<FlutterSecureStorage>(
+      FlutterSecureStorage.new,
+    )
+    ..registerLazySingleton<Base64Codec>(
+      Base64Codec.new,
+    )
     //Hive
     ..registerLazySingleton<HiveInterface>(
       () => Hive,
@@ -54,6 +69,21 @@ FutureOr<void> _registerDataSources() async {
       () async => LocaleLocaleDataSourceImpl.create(
         hive: _getIt(),
       ),
+    )
+    //Cipher
+    ..registerLazySingleton<HiveCipherDataSource>(
+      () => HiveCipherDataSourceImpl(
+        secureStorage: _getIt(),
+        hive: _getIt(),
+        base64codec: _getIt(),
+      ),
+    )
+    //UserSession
+    ..registerSingletonAsync<LocaleUserSessionDataSource>(
+      () async => LocaleUserSessionDataSourceImpl.create(
+        hive: _getIt(),
+        hiveCipherDataSource: _getIt(),
+      ),
     );
 }
 
@@ -69,6 +99,12 @@ FutureOr<void> _registerRepositories() async {
     ..registerLazySingleton<LocaleRepository>(
       () => LocaleRepositoryImpl(
         localeDataSource: _getIt(),
+      ),
+    )
+    //UserSession
+    ..registerLazySingleton<UserSessionRepository>(
+      () => UserSessionRepositoryImpl(
+        localeUserSessionDataSource: _getIt(),
       ),
     );
 }
@@ -86,6 +122,21 @@ FutureOr<void> _registerUseCases() async {
         authRepository: _getIt(),
       ),
     )
+    ..registerLazySingleton<ConfirmMailCase>(
+      () => ConfirmMailCase(
+        authRepository: _getIt(),
+      ),
+    )
+    ..registerLazySingleton<ResetPasswordCase>(
+      () => ResetPasswordCase(
+        authRepository: _getIt(),
+      ),
+    )
+    ..registerLazySingleton<LogOutCase>(
+      () => LogOutCase(
+        authRepository: _getIt(),
+      ),
+    )
     //Locale
     ..registerLazySingleton<GetLocaleCase>(
       () => GetLocaleCase(
@@ -95,6 +146,27 @@ FutureOr<void> _registerUseCases() async {
     ..registerLazySingleton<SetLocaleCase>(
       () => SetLocaleCase(
         localeRepository: _getIt(),
+      ),
+    )
+    //UserSession
+    ..registerLazySingleton<GetUserSessionCase>(
+      () => GetUserSessionCase(
+        userSessionRepository: _getIt(),
+      ),
+    )
+    ..registerLazySingleton<RemoveUserSessionCase>(
+      () => RemoveUserSessionCase(
+        userSessionRepository: _getIt(),
+      ),
+    )
+    ..registerLazySingleton<SetUserSessionCase>(
+      () => SetUserSessionCase(
+        userSessionRepository: _getIt(),
+      ),
+    )
+    ..registerLazySingleton<DeleteAccountCase>(
+      () => DeleteAccountCase(
+        authRepository: _getIt(),
       ),
     );
 }
@@ -106,6 +178,7 @@ FutureOr<void> _registerBlocs() async {
       () => LogInBloc(
         talker: _getIt(),
         logInCase: _getIt(),
+        setUserSessionCase: _getIt(),
       ),
     )
     ..registerFactory<SignUpBloc>(
@@ -114,11 +187,43 @@ FutureOr<void> _registerBlocs() async {
         signUpCase: _getIt(),
       ),
     )
+    ..registerFactory<ResetPasswordBloc>(
+      () => ResetPasswordBloc(),
+    )
+    ..registerFactory<ResetPasswordWithEmailBloc>(
+      () => ResetPasswordWithEmailBloc(
+        resetPasswordCase: _getIt(),
+      ),
+    )
+    ..registerFactoryParam<ConfirmMailBloc, UserCredential, Object?>(
+      (param1, param2) => ConfirmMailBloc(
+        credential: param1,
+        confirmMailCase: _getIt(),
+      ),
+    )
     //Locale
     ..registerFactory<LocaleCubit>(
       () => LocaleCubit(
         getLocaleCase: _getIt(),
         setLocaleCase: _getIt(),
+      ),
+    )
+    //UserSession
+    ..registerLazySingleton<UserSessionCubit>(
+      () => UserSessionCubit(
+        userSessionRepository: _getIt(),
+      ),
+    )
+    //Other
+    ..registerLazySingleton<TimersBloc>(
+      TimersBloc.new,
+    )
+    //Profile
+    ..registerFactory<ProfileBloc>(
+      () => ProfileBloc(
+        logOutCase: _getIt(),
+        removeUserSessionCase: _getIt(),
+        deleteAccountCase: _getIt(),
       ),
     );
 }

@@ -13,6 +13,14 @@ abstract interface class RemoteAuthDataSource {
   Future<void> sendEmail({
     required UserCredential credential,
   });
+
+  Future<void> resetPassword({
+    required String email,
+  });
+
+  Future<void> logOut();
+
+  Future<void> deleteAccount();
 }
 
 class RemoteAuthDataSourceImpl implements RemoteAuthDataSource {
@@ -50,5 +58,24 @@ class RemoteAuthDataSourceImpl implements RemoteAuthDataSource {
     required UserCredential credential,
   }) async {
     await credential.user?.sendEmailVerification();
+  }
+
+  @override
+  Future<void> resetPassword({
+    required String email,
+  }) async {
+    await _auth.sendPasswordResetEmail(
+      email: email,
+    );
+  }
+
+  @override
+  Future<void> logOut() async {
+    await _auth.signOut();
+  }
+
+  @override
+  Future<void> deleteAccount() async {
+    await _auth.currentUser?.delete();
   }
 }

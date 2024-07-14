@@ -1,0 +1,4 @@
+enum EngineOilType {
+  petrol,
+  diesel;
+}

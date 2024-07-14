@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:hive/hive.dart';
 
-class LocaleAdapter extends TypeAdapter<Locale> {
+class LocaleHiveAdapter extends TypeAdapter<Locale> {
   @override
   final int typeId = 0;
 
@@ -33,7 +33,7 @@ class LocaleAdapter extends TypeAdapter<Locale> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is LocaleAdapter &&
+          other is LocaleHiveAdapter &&
               runtimeType == other.runtimeType &&
               typeId == other.typeId;
 }

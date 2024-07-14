@@ -9,12 +9,12 @@ class LogInForm with _$LogInForm, FormzMixin {
   const LogInForm._();
 
   const factory LogInForm.pure([
-    @Default(TextInput.pure()) final TextInput email,
+    @Default(EmailInput.pure()) final EmailInput email,
     @Default(TextInput.pure()) final TextInput password,
   ]) = _LogInFormPure;
 
   const factory LogInForm({
-    required final TextInput email,
+    required final EmailInput email,
     required final TextInput password,
   }) = _LogInForm;
 

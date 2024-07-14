@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:garage/core/services/my_icons.dart';
 import '../../../../app/app.dart';
-import '../../../../app/i18n/strings.g.dart';
 
 class SocialButtons extends StatelessWidget {
   const SocialButtons({super.key});
@@ -14,21 +14,21 @@ class SocialButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _Button(
-          icon: AssetsNames.phoneIcon,
+          icon: MyIcons.phoneIcon,
           onTap: () {},
         ),
         SizedBox(
           width: theme.spacings.x4,
         ),
         _Button(
-          icon: AssetsNames.appleIcon,
+          icon: MyIcons.appleIcon,
           onTap: () {},
         ),
         SizedBox(
           width: theme.spacings.x4,
         ),
         _Button(
-          icon: AssetsNames.googleIcon,
+          icon: MyIcons.googleIcon,
           onTap: () {},
         ),
       ],
@@ -42,7 +42,7 @@ class _Button extends StatelessWidget {
     required this.onTap,
   });
 
-  final String icon;
+  final IconData icon;
   final void Function() onTap;
 
   @override
@@ -69,9 +69,9 @@ class _Button extends StatelessWidget {
         width: theme.spacings.x10,
         height: theme.spacings.x10,
         child: Center(
-          child: SvgPicture.asset(
+          child: Icon(
             icon,
-            color: Colors.white,
+            color: theme.palette.iconContrast,
           ),
         ),
       ),

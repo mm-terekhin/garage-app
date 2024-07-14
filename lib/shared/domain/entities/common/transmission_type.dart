@@ -1,0 +1,4 @@
+enum TransmissionType {
+  automaticTransmission,
+  manualTransmission;
+}

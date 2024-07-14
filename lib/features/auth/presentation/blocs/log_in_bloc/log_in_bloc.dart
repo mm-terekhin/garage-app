@@ -1,9 +1,12 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:garage/features/auth/auth.dart';
 import 'package:talker_flutter/talker_flutter.dart';
+import '../../../../../core/core.dart';
 import '../../../../../shared/domain/domain.dart';
+import '../../../../features.dart';
+import '../../../auth.dart';
 
 part 'log_in_event.dart';
 
@@ -13,8 +16,10 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
   LogInBloc({
     required Talker talker,
     required LogInCase logInCase,
+    required SetUserSessionCase setUserSessionCase,
   })  : _talker = talker,
         _logInCase = logInCase,
+        _setUserSessionCase = setUserSessionCase,
         super(const LogInState.initial()) {
     on<ChangeFormLogInEvent>(_onChangeForm);
     on<SubmitLogInEvent>(_onSubmit);
@@ -22,6 +27,7 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
 
   final Talker _talker;
   final LogInCase _logInCase;
+  final SetUserSessionCase _setUserSessionCase;
 
   void _onChangeForm(
     ChangeFormLogInEvent event,
@@ -54,12 +60,29 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
         ),
       );
 
-      await _logInCase.call(
+      final credential = await _logInCase.call(
         state.form.toModel(),
+      );
+
+      final userSession = UserSession(
+        token: TokenData(
+          accessToken: credential.credential?.accessToken ?? '',
+          uid: credential.user?.uid ?? '',
+        ),
+        user: UserData(
+          username: credential.user?.displayName ?? '',
+          mail: credential.user?.email,
+          phone: credential.user?.phoneNumber,
+        ),
+      );
+
+      await _setUserSessionCase.call(
+        userSession,
       );
 
       emit(
         state.copyWith(
+          credential: credential,
           status: LogInStatus.success,
         ),
       );
@@ -73,6 +96,7 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
       emit(
         state.copyWith(
           status: LogInStatus.failure,
+          unverified: error is UnverifiedMailException,
         ),
       );
     }

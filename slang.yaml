@@ -1,3 +1,4 @@
 base_locale: ru
 input_directory: assets/i18n
 output_directory: lib/app/i18n
+translate_var: i18n

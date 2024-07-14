@@ -20,9 +20,10 @@ final class SignUpState extends Equatable with FormzMixin {
     required this.status,
     required this.form,
     required this.isError,
+    required this.credential,
   });
 
-  const SignUpState.initial()
+  const SignUpState.initial({this.credential})
       : status = SignUpStatus.initial,
         form = const SignUpForm.pure(),
         isError = false;
@@ -30,16 +31,19 @@ final class SignUpState extends Equatable with FormzMixin {
   final SignUpStatus status;
   final SignUpForm form;
   final bool isError;
+  final UserCredential? credential;
 
   SignUpState copyWith({
     SignUpStatus? status,
     SignUpForm? form,
     bool? isError,
+    UserCredential? credential,
   }) {
     return SignUpState(
       status: status ?? this.status,
       form: form ?? this.form,
       isError: isError ?? this.isError,
+      credential: credential ?? this.credential,
     );
   }
 
@@ -48,6 +52,7 @@ final class SignUpState extends Equatable with FormzMixin {
         status,
         form,
         isError,
+        credential,
       ];
 
   @override

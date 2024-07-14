@@ -14,7 +14,7 @@ class LightThemeBuilder implements ThemeBuilder {
     return ThemeData(
       useMaterial3: true,
       fontFamily: fontFamily,
-      appBarTheme: appBarThemeBuilder(
+      appBarTheme: _appBarThemeBuilder(
         palette: palette,
         spacings: spacings,
         radii: radii,
@@ -31,6 +31,11 @@ class LightThemeBuilder implements ThemeBuilder {
         radii: radii,
         textTheme: textTheme,
       ),
+      navigationBarTheme: _navigationBarThemeDataBuilder(
+        palette: palette,
+        spacings: spacings,
+        textTheme: textTheme,
+      ),
       textButtonTheme: _textButtonThemeDataBuilder(
         palette: palette,
         spacings: spacings,
@@ -40,19 +45,60 @@ class LightThemeBuilder implements ThemeBuilder {
     );
   }
 
-  AppBarTheme appBarThemeBuilder({
+  NavigationBarThemeData _navigationBarThemeDataBuilder({
+    required Palette palette,
+    required Spacings spacings,
+    required TextTheme textTheme,
+  }) =>
+      NavigationBarThemeData(
+        backgroundColor: palette.bgContrast,
+        indicatorColor: Colors.transparent,
+        labelTextStyle: WidgetStateProperty.resolveWith<TextStyle?>(
+          (states) {
+            if (states.contains(WidgetState.selected)) {
+              return textTheme.titleSmall?.copyWith(
+                color: palette.textContrast,
+              );
+            }
+
+            return textTheme.titleSmall?.copyWith(
+              color: palette.textSecondary,
+            );
+          },
+        ),
+        iconTheme: WidgetStateProperty.resolveWith<IconThemeData>(
+          (states) {
+            if (states.contains(WidgetState.selected)) {
+              return IconThemeData(
+                size: spacings.x7,
+                color: palette.iconContrast,
+              );
+            }
+
+            return IconThemeData(
+              size: spacings.x7,
+              color: palette.iconPrimary,
+            );
+          },
+        ),
+      );
+
+  AppBarTheme _appBarThemeBuilder({
     required Palette palette,
     required Spacings spacings,
     required Radii radii,
     required TextTheme textTheme,
   }) {
     return AppBarTheme(
+      iconTheme: IconThemeData(
+        color: palette.iconContrast,
+      ),
       centerTitle: true,
-      backgroundColor: palette.bgPrimary,
+      backgroundColor: palette.bgContrast,
       scrolledUnderElevation: 0,
       elevation: 0,
-      titleTextStyle: textTheme.titleLarge!.copyWith(
-        color: palette.textPrimary,
+      titleTextStyle: textTheme.titleLarge?.copyWith(
+        color: palette.textContrast,
       ),
     );
   }
@@ -70,16 +116,16 @@ class LightThemeBuilder implements ThemeBuilder {
             borderRadius: BorderRadius.all(radii.x2),
           ),
         ),*/
-        backgroundColor: const MaterialStatePropertyAll<Color>(
+        backgroundColor: const WidgetStatePropertyAll<Color>(
           Colors.transparent,
         ),
-        padding: MaterialStatePropertyAll<EdgeInsetsGeometry>(
+        padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(
           EdgeInsets.symmetric(
             vertical: spacings.x3,
             horizontal: spacings.x7,
           ),
         ),
-        textStyle: MaterialStatePropertyAll<TextStyle>(
+        textStyle: WidgetStatePropertyAll<TextStyle>(
           textTheme.titleMedium!.copyWith(
             color: palette.textContrast,
           ),
@@ -96,21 +142,21 @@ class LightThemeBuilder implements ThemeBuilder {
   }) {
     return TextButtonThemeData(
       style: ButtonStyle(
-        overlayColor: MaterialStatePropertyAll<Color>(
+        overlayColor: WidgetStatePropertyAll<Color>(
           palette.borderPrimary.withOpacity(0.2),
         ),
-        shape: MaterialStateProperty.all(
+        shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(radii.x2),
           ),
         ),
-        padding: MaterialStatePropertyAll<EdgeInsetsGeometry>(
+        padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(
           EdgeInsets.symmetric(
             vertical: spacings.x3,
             horizontal: spacings.x7,
           ),
         ),
-        textStyle: MaterialStatePropertyAll<TextStyle>(
+        textStyle: WidgetStatePropertyAll<TextStyle>(
           textTheme.titleMedium!,
         ),
       ),

@@ -20,26 +20,35 @@ final class LogInState extends Equatable with FormzMixin {
     required this.status,
     required this.form,
     required this.isError,
+    required this.unverified,
+    required this.credential,
   });
 
   const LogInState.initial()
       : status = LogInStatus.initial,
         form = const LogInForm.pure(),
-        isError = false;
+        isError = false,
+        unverified = false,
+        credential = null;
 
   final LogInStatus status;
   final LogInForm form;
   final bool isError;
+  final bool unverified;
+  final UserCredential? credential;
 
-  LogInState copyWith({
-    LogInStatus? status,
-    LogInForm? form,
-    bool? isError,
-  }) {
+  LogInState copyWith(
+      {LogInStatus? status,
+      LogInForm? form,
+      bool? isError,
+      bool? unverified,
+      UserCredential? credential}) {
     return LogInState(
       status: status ?? this.status,
       form: form ?? this.form,
       isError: isError ?? this.isError,
+      unverified: unverified ?? this.unverified,
+      credential: credential ?? this.credential,
     );
   }
 
@@ -48,6 +57,8 @@ final class LogInState extends Equatable with FormzMixin {
         status,
         form,
         isError,
+        unverified,
+        credential,
       ];
 
   @override

@@ -14,13 +14,12 @@ class RegistrationView extends StatelessWidget {
     final router = GoRouter.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          context.l10n.log_in_screen.registrationTitle,
-        ),
+      appBar: AuthAppBar(
+        title:
+          context.l10n.auth.registrationTitle,
       ),
       body: SafeArea(
-        child: BlocBuilder<SignUpBloc, SignUpState>(
+        child: BlocConsumer<SignUpBloc, SignUpState>(
           builder: (context, state) {
             return GestureDetector(
               onTap: () => FocusScope.of(context).unfocus(),
@@ -38,7 +37,7 @@ class RegistrationView extends StatelessWidget {
                     errorText: state.isError
                         ? state.form.login.error?.toText(context.l10n)
                         : null,
-                    labelText: context.l10n.log_in_screen.mailLabel,
+                    labelText: context.l10n.auth.mailLabel,
                     initialValue: state.form.login.value,
                     onChanged: (value) {
                       final newForm = state.form.copyWith(
@@ -58,7 +57,7 @@ class RegistrationView extends StatelessWidget {
                     errorText: state.isError
                         ? state.form.username.error?.toText(context.l10n)
                         : null,
-                    labelText: context.l10n.log_in_screen.usernameLabel,
+                    labelText: context.l10n.auth.usernameLabel,
                     initialValue: state.form.username.value,
                     onChanged: (value) {
                       final newForm = state.form.copyWith(
@@ -74,12 +73,11 @@ class RegistrationView extends StatelessWidget {
                           );
                     },
                   ),
-                  SimpleField(
+                  PasswordField(
                     errorText: state.isError
                         ? state.form.password.error?.toText(context.l10n)
                         : null,
-                    labelText: context.l10n.log_in_screen.passwordLabel,
-                    initialValue: state.form.password.value,
+                    labelText: context.l10n.auth.passwordLabel,
                     onChanged: (value) {
                       final newForm = state.form.copyWith(
                         password: PasswordInput.dirty(value),
@@ -92,12 +90,11 @@ class RegistrationView extends StatelessWidget {
                           );
                     },
                   ),
-                  SimpleField(
+                  PasswordField(
                     errorText: state.isError
                         ? state.form.rePassword.error?.toText(context.l10n)
                         : null,
-                    labelText: context.l10n.log_in_screen.confirmationPassword,
-                    initialValue: state.form.rePassword.value,
+                    labelText: context.l10n.auth.confirmationPassword,
                     onChanged: (value) {
                       final newForm = state.form.copyWith(
                         rePassword: VerifiedPassword.dirty(
@@ -123,7 +120,7 @@ class RegistrationView extends StatelessWidget {
                             const SubmitSignUpEvent(),
                           );
                     },
-                    title: context.l10n.log_in_screen.registrationButtonLabel,
+                    title: context.l10n.auth.registrationButtonLabel,
                   ),
                   SizedBox(
                     height: theme.spacings.x5,
@@ -132,7 +129,7 @@ class RegistrationView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        context.l10n.log_in_screen.haveAccountTitle,
+                        context.l10n.auth.haveAccountTitle,
                         style: theme.textTheme.bodyLarge,
                       ),
                       SizedBox(
@@ -142,7 +139,7 @@ class RegistrationView extends StatelessWidget {
                         onPressed: () {
                           router.pushNamed('sign_in');
                         },
-                        title: context.l10n.log_in_screen.logInButtonLabel,
+                        title: context.l10n.auth.logInButtonLabel,
                       ),
                     ],
                   ),
@@ -153,6 +150,14 @@ class RegistrationView extends StatelessWidget {
                 ],
               ),
             );
+          },
+          listener: (BuildContext context, SignUpState state) {
+            if (state.status.isSuccess && state.credential != null) {
+              router.pushNamed(
+                'confirm_mail',
+                extra: state.credential,
+              );
+            }
           },
         ),
       ),

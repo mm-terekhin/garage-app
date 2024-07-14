@@ -13,6 +13,10 @@ class Palette extends ThemeExtension<Palette> {
     //Border
     required this.borderPrimary,
     required this.borderError,
+    //Icon
+    required this.iconPrimary,
+    required this.iconContrast,
+    required this.iconSecondary,
   });
 
   const Palette.light()
@@ -28,6 +32,10 @@ class Palette extends ThemeExtension<Palette> {
           //Border
           borderPrimary: const Color(0xFFced4da),
           borderError: const Color(0xFFD00000),
+          //Icon
+          iconPrimary: const Color(0xFFadb5bd),
+          iconSecondary: const Color(0xFF000000),
+          iconContrast: const Color(0xFFFFFFFF),
         );
 
   // Text
@@ -44,6 +52,11 @@ class Palette extends ThemeExtension<Palette> {
   final Color borderPrimary;
   final Color borderError;
 
+  //Icon
+  final Color iconPrimary;
+  final Color iconContrast;
+  final Color iconSecondary;
+
   @override
   Palette copyWith({
     Color? textPrimary,
@@ -54,6 +67,9 @@ class Palette extends ThemeExtension<Palette> {
     Color? bgContrast,
     Color? borderPrimary,
     Color? borderError,
+    Color? iconPrimary,
+    Color? iconContrast,
+    Color? iconSecondary,
   }) {
     return Palette(
       // Text
@@ -67,6 +83,10 @@ class Palette extends ThemeExtension<Palette> {
       // Border
       borderPrimary: borderPrimary ?? this.borderPrimary,
       borderError: borderError ?? this.borderError,
+      // Icons
+      iconPrimary: iconPrimary ?? this.iconPrimary,
+      iconContrast: iconContrast ?? this.iconContrast,
+      iconSecondary: iconSecondary ?? this.iconSecondary,
     );
   }
 
@@ -88,6 +108,10 @@ class Palette extends ThemeExtension<Palette> {
       // Border
       borderPrimary: Color.lerp(borderPrimary, other.borderPrimary, t)!,
       borderError: Color.lerp(borderError, other.borderError, t)!,
+      //Icon
+      iconPrimary: Color.lerp(iconPrimary, other.iconPrimary, t)!,
+      iconContrast: Color.lerp(iconContrast, other.iconContrast, t)!,
+      iconSecondary: Color.lerp(iconSecondary, other.iconSecondary, t)!,
     );
   }
 }
